@@ -40,7 +40,7 @@ public class LimitInterceptor {
     }
 
 
-    @Around("execution(public * *(..)) && @annotation(senunit.system.commons.limitrate.Limit)")
+    @Around("execution(public * *(..)) && @annotation(sc.whorl.system.commons.limitrate.Limit)")
     public Object interceptor(ProceedingJoinPoint pjp) {
         MethodSignature signature = (MethodSignature) pjp.getSignature();
         Method method = signature.getMethod();

@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import sc.whorl.logic.pojo.order.UserVo;
+import sc.whorl.logic.pojo.auth.UserVo;
 import sc.whorl.logic.service.user.UserService;
 import sc.whorl.system.commons.MsgResponseBody;
 import sc.whorl.system.commons.webhandler.RequestJsonParam;
@@ -21,7 +21,7 @@ import sc.whorl.system.commons.webhandler.RequestJsonParam;
  * @since [产品/模块版本] （可选）
  */
 @RestController
-@RequestMapping("/sc/user/auth")
+@RequestMapping("/sc/user/mapper.auth")
 @Api(value = "UserLoginWeb", description = "用户权限登陆相关接口")
 public class UserLoginWeb {
 

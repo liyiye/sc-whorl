@@ -25,7 +25,7 @@ import sc.whorl.system.utils.mapper.JsonMapper;
  * @since [产品/模块版本] （可选）
  */
 @Order(10)
-@ControllerAdvice(basePackages = "senunit.web")
+@ControllerAdvice(basePackages = "sc.whorl.web")
 public class ResponseJsonAdvice implements ResponseBodyAdvice {
 
     @Override

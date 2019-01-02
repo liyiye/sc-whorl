@@ -18,7 +18,7 @@ import tk.mybatis.spring.annotation.MapperScan;
 //因为启动类不能直接放在main/java文件夹下，必须要建一个包把它放进去或者使用@ComponentScan指明要扫描的包,@ComponentScan配置多个@ComponentScan
 //开启事务控制,默认使用DataSourceTransactionManager,如果有多个事务管理器需要自己配置
 @EnableTransactionManagement
-@MapperScan(basePackages = "senunit.logic.domain.dao.orders")
+@MapperScan(basePackages = "sc.whorl.logic.domain.dao.auth")
 @EnableSwagger2Doc
 //Boot根据下面的顺序去侦测缓存提供者：Generic,JCache (JSR-107),EhCache 2.x,Hazelcast,Infinispan,Redis,Guava,Simple
 @EnableCaching

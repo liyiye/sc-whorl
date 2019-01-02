@@ -22,7 +22,6 @@ import sc.whorl.system.config.jwt.JwtAuthenPreFilter;
 import sc.whorl.system.config.springsecurity.handler.UnauthorizedHandler;
 
 
-
 /***
  *
  * @FileName: WebSecurityConfig
@@ -130,7 +129,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 "/**/*.jpg",
                 "/**/*.html",
                 "/**/*.css",
-                "/**/*.js")
+                "/**/*.js","/swagger-resources/**","/webjars/springfox-swagger-ui/**","/v2/api-docs/**")
                 .permitAll()
                 // 所有 antMatchers配置的 请求的都放行 不做认证即不需要登录即可访问,可以配置登陆下载等不需要token的请求路径
                 .antMatchers(antMatchers.split(",")).permitAll()
@@ -167,6 +166,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
      */
     @Bean
     public JwtAuthenPreFilter jwtAuthenPreFilterBean() throws Exception {
+
         return new JwtAuthenPreFilter();
     }
 

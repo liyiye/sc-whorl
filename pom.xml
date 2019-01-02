@@ -36,7 +36,7 @@
         <spring-boot.version>2.0.1.RELEASE</spring-boot.version>
 
 
-        <docker.image.prefix>sc-senunit</docker.image.prefix>
+        <docker.image.prefix>sc-whorl</docker.image.prefix>
         <docker.plugin.version>0.3.258</docker.plugin.version>
     </properties>
 

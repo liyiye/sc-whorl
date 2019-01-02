@@ -26,7 +26,7 @@ public class Swagger2Config {
     	return new Docket(DocumentationType.SWAGGER_2)
 				.apiInfo(apiInfo())
 				.select()
-				.apis(RequestHandlerSelectors.basePackage("senunit.logic.rmiservice.units.service"))
+				.apis(RequestHandlerSelectors.basePackage("sc.whorl.logic.rmiservice.units.service"))
 				.paths(PathSelectors.any())
 				.build()
 				.pathMapping("/")
@@ -42,7 +42,7 @@ public class Swagger2Config {
 				//页面标题
 				.title("RESTful API")
 				//创建人
-				.contact("sc-senunit")
+				.contact("sc-whorl")
 				//版本号
 				.version("1.0")
 				//描述

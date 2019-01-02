@@ -1,4 +1,4 @@
-package sc.whorl.logic.pojo.order;
+package sc.whorl.logic.pojo.auth;
 
 /**
  * <一句话功能简述>

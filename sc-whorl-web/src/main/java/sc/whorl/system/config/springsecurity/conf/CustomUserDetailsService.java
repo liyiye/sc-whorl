@@ -1,11 +1,13 @@
 package sc.whorl.system.config.springsecurity.conf;
 
 
+import com.google.common.base.Function;
+import com.google.common.collect.Lists;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -13,11 +15,14 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import lombok.extern.slf4j.Slf4j;
-import sc.whorl.logic.domain.dao.orders.UsersMapper;
-import sc.whorl.logic.domain.model.orders.Users;
+import sc.whorl.logic.domain.dao.auth.UserMapper;
+import sc.whorl.logic.domain.model.auth.Role;
+import sc.whorl.logic.domain.model.auth.User;
+
 
 /***
  *
@@ -42,50 +47,48 @@ import sc.whorl.logic.domain.model.orders.Users;
 public class CustomUserDetailsService implements UserDetailsService {
 
     @Autowired
-    private UsersMapper usersMapper;
+    private UserMapper userMapper;
+
 
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         log.info("登录用户：" + username);
         //用户用户信息和用户角色
-        Users user = new Users();
-        user.setAccountname(username);
-        Users userOne = usersMapper.selectOne(user);
+        User user = new User();
+        user.setLoginname(username);
+        User userOne = userMapper.selectOne(user);
         if (ObjectUtils.isEmpty(userOne)) {
             //后台抛出的异常是：org.springframework.security.authentication.BadCredentialsException: Bad credentials  坏的凭证 如果要抛出UsernameNotFoundException 用户找不到异常则需要自定义重新它的异常
             log.info("登录用户：" + username + " 不存在.");
             throw new UsernameNotFoundException("登录用户：" + username + " 不存在");
         }
         Set<GrantedAuthority> grantedAuths = new HashSet<GrantedAuthority>();
-        //todo 具体业务查询用户对应的角色
-       /* if (roleList.size() > 0) {
-            roleList.stream().forEach(role -> {
-                grantedAuths.add(new SimpleGrantedAuthority(role.getAuthorizedSigns()));
-            });
-        }*/
-        grantedAuths.add(new SimpleGrantedAuthority("admin"));
-        grantedAuths.add(new SimpleGrantedAuthority("teach"));
-        User baseUser = new User(userOne.getAccountname(),userOne.getPassword(),
+        List<Role> roles = userMapper.selectRolsByUserId(userOne.getTid());
+        if (!ObjectUtils.isEmpty(roles)) {
+            grantedAuths.addAll(Lists.transform(roles, (Function<Role, GrantedAuthority>) role -> new SimpleGrantedAuthority("ROLE_" + role.getRolename())));
+        }
+        org.springframework.security.core.userdetails.User baseUser = new org.springframework.security.core.userdetails.User(userOne.getLoginname(), userOne.getPassword(),
                 grantedAuths);
         return baseUser;
     }
 
     @Cacheable(key = "#userId", value = "SC-USERDETAIL")
     public UserDetails loadUserById(Long userId) {
-        Users user = new Users();
-        user.setAccountId(userId);
-        Users userOne = usersMapper.selectOne(user);
+        User user = new User();
+        user.setTid(userId);
+        User userOne = userMapper.selectOne(user);
         if (ObjectUtils.isEmpty(userOne)) {
             //后台抛出的异常是：org.springframework.security.authentication.BadCredentialsException: Bad credentials  坏的凭证 如果要抛出UsernameNotFoundException 用户找不到异常则需要自定义重新它的异常
             log.info("登录用户编号：" + userId + " 不存在.");
             throw new UsernameNotFoundException("登录用户编号：" + userId + " 不存在");
         }
+        List<Role> roles = userMapper.selectRolsByUserId(userOne.getTid());
         Set<GrantedAuthority> grantedAuths = new HashSet<GrantedAuthority>();
-        //todo 具体业务查询用户对应的角色,注意SecurityExpressionRoot在判断的时候默认会为hasRole('USER')加上前缀
-        grantedAuths.add(new SimpleGrantedAuthority("ROLE_admin"));
-        grantedAuths.add(new SimpleGrantedAuthority("ROLE_teach"));
-        User baseUser = new User(userOne.getAccountname(), userOne.getPassword(),
+        if (!ObjectUtils.isEmpty(roles)) {
+            grantedAuths.addAll(Lists.transform(roles, (Function<Role, GrantedAuthority>) role -> new SimpleGrantedAuthority("ROLE_" + role.getRolename())));
+        }
+        org.springframework.security.core.userdetails.User baseUser = new org.springframework.security.core.userdetails.User(userOne.getLoginname(), userOne.getPassword(),
                 grantedAuths);
         return baseUser;
     }

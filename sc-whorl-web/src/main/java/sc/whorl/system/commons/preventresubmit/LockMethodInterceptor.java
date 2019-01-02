@@ -30,7 +30,7 @@ public class LockMethodInterceptor {
     private final CacheKeyGenerator cacheKeyGenerator;
 
 
-    @Around("execution(public * *(..)) && @annotation(senunit.system.commons.preventresubmit.PreventResubmitLock)")
+    @Around("execution(public * *(..)) && @annotation(sc.whorl.system.commons.preventresubmit.PreventResubmitLock)")
     public Object interceptor(ProceedingJoinPoint pjp) {
         MethodSignature signature = (MethodSignature) pjp.getSignature();
         Method method = signature.getMethod();

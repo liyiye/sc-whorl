@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration debug="true">
-    <property name="LOG_DIR" value=".senunit"/>
-    <property name="PROJECT_NAME" value="senunit"/>
+    <property name="LOG_DIR" value=".sc-whorl"/>
+    <property name="PROJECT_NAME" value="sc-whorl"/>
     <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
             <pattern>%date{yyyy-MM-dd HH:mm:ss.SSS}[%thread] %-5level %logger[%line] %msg%n
@@ -18,7 +18,7 @@
             <pattern>%date{yyyy-MM-dd HH:mm:ss.SSS}[%thread] %-5level %logger[%line] %msg%n</pattern>
         </encoder>
     </appender>
-    <logger name="senunit" level="info">
+    <logger name="sc" level="info">
         <appender-ref ref="fileLog"/>
     </logger>
     <root level="debug">
