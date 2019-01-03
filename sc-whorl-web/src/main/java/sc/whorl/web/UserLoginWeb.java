@@ -21,7 +21,7 @@ import sc.whorl.system.commons.webhandler.RequestJsonParam;
  * @since [产品/模块版本] （可选）
  */
 @RestController
-@RequestMapping("/sc/user/mapper.auth")
+@RequestMapping("/sc/user/auth")
 @Api(value = "UserLoginWeb", description = "用户权限登陆相关接口")
 public class UserLoginWeb {
 
