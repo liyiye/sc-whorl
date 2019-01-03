@@ -134,7 +134,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 // 所有 antMatchers配置的 请求的都放行 不做认证即不需要登录即可访问,可以配置登陆下载等不需要token的请求路径
                 .antMatchers(antMatchers.split(",")).permitAll()
                 .antMatchers(HttpMethod.GET, "/api/download/**")
-                .permitAll()
+                .permitAll().antMatchers(HttpMethod.OPTIONS).permitAll()//跨域请求会先进行一次options请求
                 // 其他请求都需要进行认证,认证通过够才能访问   待考证：如果使用重定向 httpServletRequest.getRequestDispatcher(url).forward(httpServletRequest,httpServletResponse); 重定向跳转的url不会被拦截（即在这里配置了重定向的url需要特定权限认证不起效），但是如果在Controller 方法上配置了方法级的权限则会进行拦截
                 .anyRequest().authenticated()
                 .and().exceptionHandling()
