@@ -46,6 +46,9 @@ public class GlobalConfig implements WebMvcConfigurer {
     @Value("${spring.jackson.date-format:yyyy-MM-dd HH:mm:ss}")
     private String pattern;
 
+    @Value("${spring.http.multipart.location:/}")
+    private String multipartLocation;
+
 
     /**
      * 全局日期格式化处理
@@ -95,6 +98,9 @@ public class GlobalConfig implements WebMvcConfigurer {
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/static/**").addResourceLocations("classpath:/static/");
+        registry.addResourceHandler("/upload/**").addResourceLocations("file:"+multipartLocation+"/upload/");
+        registry.addResourceHandler("/resoures/**").addResourceLocations("classpath:/resoures/");
+
     }
 
     /**
