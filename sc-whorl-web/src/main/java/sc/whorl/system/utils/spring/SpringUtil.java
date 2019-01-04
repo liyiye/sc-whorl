@@ -1,4 +1,4 @@
-package sc.whorl.system.commons.spring;
+package sc.whorl.system.utils.spring;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.core.env.Environment;

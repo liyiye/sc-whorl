@@ -15,8 +15,6 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
 
 import java.util.Arrays;
 
-import sc.whorl.system.utils.mapper.JsonMapper;
-
 
 /**
  * 对controller的返回值做一些处理,比如加密,返回格式,日志记录等
@@ -36,7 +34,6 @@ public class ResponseJsonAdvice implements ResponseBodyAdvice {
     @Nullable
     @Override
     public Object beforeBodyWrite(@Nullable Object body, MethodParameter returnType, MediaType selectedContentType, Class selectedConverterType, ServerHttpRequest request, ServerHttpResponse response) {
-        System.out.println("-->" + JsonMapper.nonDefaultMapper().toJson(body));
         ResponseJsonParam responseJsonParam = returnType.getMethodAnnotation(ResponseJsonParam.class);
         if (responseJsonParam != null) {
             String[] filter = responseJsonParam.filter();

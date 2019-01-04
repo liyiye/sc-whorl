@@ -35,4 +35,9 @@ public class UserAuthInfoUtils {
         return JwtTokenUtil.LOCAL_USER.get().getLoginName();
     }
 
+
+    public static JWTUserDetail.UserType getUserType() {
+        return JwtTokenUtil.LOCAL_USER.get().getUserType();
+    }
+
 }

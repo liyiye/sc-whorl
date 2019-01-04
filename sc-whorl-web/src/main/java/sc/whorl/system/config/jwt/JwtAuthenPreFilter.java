@@ -106,9 +106,8 @@ public class JwtAuthenPreFilter extends OncePerRequestFilter {
                         redisUtil.setEx(String.format(JwtTokenUtil.JWT_TOKEN_PREFIX, userDetail.getUserType(), userDetail.getUserId()), authToken, subRefresh, TimeUnit.SECONDS);
                         httpServletResponse.setHeader(tokenHeader, tokenHead + resAuthToken);
                     }
-                    userDetail.setJwtToken(authToken);
                     JwtTokenUtil.LOCAL_USER.set(userDetail);
-                    UserDetails userDetails = customUserDetailsService.loadUserById(userDetail.getUserId());
+                    UserDetails userDetails = customUserDetailsService.loadUserByUsername(userDetail.getLoginName());
                     UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
                     authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(httpServletRequest));
                     SecurityContextHolder.getContext().setAuthentication(authentication);

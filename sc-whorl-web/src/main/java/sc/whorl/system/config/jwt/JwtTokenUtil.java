@@ -61,6 +61,7 @@ public class JwtTokenUtil implements Serializable {
         jwtUserDetails.setLoginName(claims.get(JWT_LOGIN_NAME, String.class));
         jwtUserDetails.setUserType(Enum.valueOf(JWTUserDetail.UserType.class, (String) claims.get(JWT_LOGIN_USERTYPE)));
         jwtUserDetails.setLoginTime(new Date(claims.get(JWT_LOGIN_TIME, Long.class)));
+        jwtUserDetails.setJwtToken(token);
         return jwtUserDetails;
 
     }

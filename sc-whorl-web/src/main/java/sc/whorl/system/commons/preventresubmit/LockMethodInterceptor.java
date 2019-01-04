@@ -11,7 +11,6 @@ import org.springframework.context.annotation.Configuration;
 import java.lang.reflect.Method;
 import java.util.UUID;
 
-import sc.whorl.system.commons.lock.RedisLockHelper;
 
 /**
  * redis的方案实现
@@ -49,7 +48,7 @@ public class LockMethodInterceptor {
             try {
                 return pjp.proceed();
             } catch (Throwable throwable) {
-                throw new RuntimeException("系统异常");
+                throw new RuntimeException(throwable);
             }
         } finally {
             redisLockHelper.unlock(lockKey, value, lock.expire(), lock.timeUnit());

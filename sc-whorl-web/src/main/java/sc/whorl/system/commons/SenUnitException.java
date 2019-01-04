@@ -8,6 +8,11 @@ public class SenUnitException extends RuntimeException {
         this.code = code;
     }
 
+    public SenUnitException(int code, String message) {
+        super(message);
+        this.code = String.valueOf(code);
+    }
+
     public SenUnitException(String code, Throwable cause) {
         super(cause);
         this.code = code;

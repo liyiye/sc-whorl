@@ -1,4 +1,4 @@
-package sc.whorl.system.commons.lock;
+package sc.whorl.system.commons.preventresubmit;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.concurrent.BasicThreadFactory;
@@ -57,6 +57,35 @@ public class RedisLockHelper {
     }
 
     /**
+     * 删除对应的key参数
+     *
+     * @param lockKey
+     */
+    public void unlock(final String lockKey) {
+        stringRedisTemplate.delete(lockKey);
+    }
+
+
+    /**
+     * *****************************************************************************************************
+     * 华丽的分割线
+     * *****************************************************************************************************
+     */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /**
      * 获取锁
      *
      * @param lockKey
@@ -86,6 +115,7 @@ public class RedisLockHelper {
 
 
     /**
+     * 立即释放锁
      * @see <a href="http://redis.io/commands/set">Redis Documentation: SET</a>
      */
     public void unlock(String lockKey, String value) {
@@ -133,5 +163,6 @@ public class RedisLockHelper {
             stringRedisTemplate.delete(lockKey);
         }
     }
+
 
 }

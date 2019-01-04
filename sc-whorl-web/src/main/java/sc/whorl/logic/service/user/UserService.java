@@ -1,6 +1,7 @@
 package sc.whorl.logic.service.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -13,6 +14,8 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import java.util.Date;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
@@ -23,12 +26,18 @@ import sc.whorl.logic.domain.dao.auth.UserMapper;
 import sc.whorl.logic.domain.model.auth.User;
 import sc.whorl.logic.pojo.auth.UserVo;
 import sc.whorl.system.commons.MsgResponseBody;
+import sc.whorl.system.commons.SenUnitDic;
+import sc.whorl.system.commons.SenUnitException;
 import sc.whorl.system.commons.base.BaseService;
-import sc.whorl.system.commons.spring.SpringUtil;
+import sc.whorl.system.commons.lock.RedisLock;
 import sc.whorl.system.config.jwt.JWTUserDetail;
 import sc.whorl.system.config.jwt.JwtTokenUtil;
 import sc.whorl.system.config.springsecurity.utils.ErrorCodeEnum;
+import sc.whorl.system.config.springsecurity.utils.UserAuthInfoUtils;
+import sc.whorl.system.utils.ScUtils;
 import sc.whorl.system.utils.redis.RedisUtil;
+import sc.whorl.system.utils.spring.SpringUtil;
+import tk.mybatis.mapper.entity.Example;
 
 /**
  * <一句话功能简述>
@@ -46,6 +55,8 @@ public class UserService extends BaseService<UserMapper, User> {
     private BCryptPasswordEncoder bCryptPasswordEncoder;
     @Autowired
     private JwtTokenUtil jwtTokenUtil;
+    @Value("${jwt.access_token:#{30*24*60*60}}")
+    private Long access_token_expiration;
 
     @Autowired
     AuthenticationManager authenticationManager;
@@ -53,17 +64,24 @@ public class UserService extends BaseService<UserMapper, User> {
     public void sample(){
         //获取spring上下文
         WebApplicationContext wac = (WebApplicationContext) SpringUtil.getApplicationContext();
-
         //获取请求上下文
         HttpServletRequest httpRequest = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest();
-
         ServletContext sc = httpRequest.getServletContext();
         //获取响应上下文
         HttpServletResponse httpResponse = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getResponse();
-
+        //获取用户登陆后的信息
+        UserAuthInfoUtils.getUser();
     }
 
     public void register(UserVo userVo) {
+        Example example = new Example(User.class);
+        example.createCriteria().andEqualTo("loginname", userVo.getAccountname()).orEqualTo("mobile", userVo.getUserPhone());
+        RedisLock.tryLock(userVo.getAccountname());
+        List<User> userList = this.selectByExample(example);
+        RedisLock.unLock(userVo.getAccountname());
+        if (!ScUtils.isEmpty(userList)) {
+            throw new SenUnitException(SenUnitDic.RESULT_CODE_SERVICE_UNAVAILABLE, "账户已存在!");
+        }
         User users = new User();
         users.setLoginname(userVo.getAccountname());
         users.setPassword(bCryptPasswordEncoder.encode(userVo.getPassword()));
@@ -79,7 +97,7 @@ public class UserService extends BaseService<UserMapper, User> {
      * @param userVo
      * @return
      */
-    public MsgResponseBody login(UserVo userVo) {
+    public MsgResponseBody  login(UserVo userVo) {
         User user = new User();
         user.setLoginname(userVo.getAccountname());
         User userOne = selectOne(user);
@@ -91,19 +109,13 @@ public class UserService extends BaseService<UserMapper, User> {
             log.info("用户登陆密码错误!");
             return MsgResponseBody.error(ErrorCodeEnum.LOGIN_INCORRECT.getCode()).setResult(ErrorCodeEnum.LOGIN_INCORRECT.getMessage());
         }
-
-        /**
-         * todo spring security验证账户名和密码,可以考虑去除上面的用户和登陆密码校验
-         */
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
                         userVo.getAccountname(),
                         userVo.getPassword()
                 )
         );
-
         SecurityContextHolder.getContext().setAuthentication(authentication);
-
         //使用jwt生成token 用于权限效验
         JWTUserDetail jwtUserDetail = new JWTUserDetail();
         jwtUserDetail.setLoginName(userOne.getLoginname());
@@ -113,5 +125,9 @@ public class UserService extends BaseService<UserMapper, User> {
         String token = jwtTokenUtil.generateToken(jwtUserDetail);
         jwtUserDetail.setJwtToken(token);
         return MsgResponseBody.success().setResult(jwtUserDetail);
+    }
+
+    public void logout() {
+        redisUtil.setEx(String.format(JwtTokenUtil.JWT_TOKEN_PREFIX, UserAuthInfoUtils.getUserType(), UserAuthInfoUtils.getUserId()), UserAuthInfoUtils.getUser().getJwtToken(), access_token_expiration, TimeUnit.SECONDS);
     }
 }

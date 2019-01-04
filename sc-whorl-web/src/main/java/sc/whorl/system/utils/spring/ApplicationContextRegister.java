@@ -1,4 +1,4 @@
-package sc.whorl.system.commons.spring;
+package sc.whorl.system.utils.spring;
 
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
