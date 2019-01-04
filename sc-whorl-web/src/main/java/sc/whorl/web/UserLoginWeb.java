@@ -2,6 +2,7 @@ package sc.whorl.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -56,6 +57,8 @@ public class UserLoginWeb {
     @RequestMapping("/register")
     //默认5秒内同一手机号不可重复提交
     @PreventResubmitLock(prefix = "USER:REGISTER")
+    //cache会在方法执行后缓存,相当于更新了缓存,少了一步查询缓存
+    @CachePut(key = "#accountname", value = "SC-USERDETAIL")
     public MsgResponseBody register(@RequestBody @PreventParam(name = "userPhone") UserVo userVo) {
         userService.register(userVo);
         return MsgResponseBody.success().setResult("注册成功");
