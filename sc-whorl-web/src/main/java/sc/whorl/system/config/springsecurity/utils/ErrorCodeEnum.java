@@ -7,18 +7,13 @@ package sc.whorl.system.config.springsecurity.utils;
 public enum ErrorCodeEnum {
 
 
-    FAIL("fail.", "1"),
-    EXIST("数据已经存在.","10"),
-    PARAMS("参数错误.","400"),
-    ERROR("服务器遇到错误，无法完成请求,请联系管理员.","500"),
-    DELETE("删除成功.","3"),
-    AUTHORITY("无访问权限,请联系管理员.","403"),
-    LOGIN_WITHOUT("登录超时,请重新登录.","-1"),
-    LOGIN_SUCCESS("退出系统成功!", "0"),
-    LOGIN_FAIL("登录失败.","-2"),
+    FAIL("系统异常,操作失败!", "1"),
+    SUCCESS("操作成功!", "0"),
+
+
     LOGIN_INCORRECT("登录账户或者密码错误.","-3"),
     TOKEN_INVALID("无效的用户token.","401"),
-    NO_TOKEN("要访问此资源，需要完全身份验证,缺少请求头参数,Authorization传递是token值所以参数是必须的.","401");
+    NO_TOKEN("要访问此资源,需要完全身份验证,缺少请求头参数,Authorization传递是token值所以参数是必须的.", "401");
 
     private String message ;
     private String code ;
@@ -43,4 +38,5 @@ public enum ErrorCodeEnum {
     public void setCode(String code) {
         this.code = code;
     }
+
 }

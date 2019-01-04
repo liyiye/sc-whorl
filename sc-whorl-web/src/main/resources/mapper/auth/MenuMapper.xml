@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="sc.whorl.logic.domain.dao.auth.MenuMapper" >
+  <resultMap id="BaseResultMap" type="sc.whorl.logic.domain.model.auth.Menu" >
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="tid" property="tid" jdbcType="BIGINT" />
+    <result column="parentId" property="parentid" jdbcType="BIGINT" />
+    <result column="menuUrl" property="menuurl" jdbcType="VARCHAR" />
+    <result column="menuName" property="menuname" jdbcType="VARCHAR" />
+    <result column="permissionId" property="permissionid" jdbcType="BIGINT" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="applicationCode" property="applicationcode" jdbcType="VARCHAR" />
+    <result column="createAt" property="createat" jdbcType="TIMESTAMP" />
+    <result column="createBy" property="createby" jdbcType="VARCHAR" />
+    <result column="modifyAt" property="modifyat" jdbcType="TIMESTAMP" />
+    <result column="modifyBy" property="modifyby" jdbcType="VARCHAR" />
+    <result column="order" property="order" jdbcType="INTEGER" />
+  </resultMap>
+</mapper>

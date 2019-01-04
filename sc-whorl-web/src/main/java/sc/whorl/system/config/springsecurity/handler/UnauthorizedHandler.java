@@ -30,7 +30,7 @@ public class UnauthorizedHandler implements AuthenticationEntryPoint {
         // 用户登录时身份认证未通过
         if (e instanceof BadCredentialsException) {
             log.info("用户登录时身份认证失败!");
-            ResultUtil.writeJavaScript(httpServletResponse, ErrorCodeEnum.LOGIN_INCORRECT.getCode(), e.getMessage());
+            ResultUtil.writeJavaScript(httpServletResponse, ErrorCodeEnum.TOKEN_INVALID.getCode(), e.getMessage());
         } else if (e instanceof InsufficientAuthenticationException) {
             log.info("缺少请求头参数,Authorization传递是token值所以参数是必须的.");
             ResultUtil.writeJavaScript(httpServletResponse, ErrorCodeEnum.NO_TOKEN.getCode(), ErrorCodeEnum.NO_TOKEN.getMessage());
