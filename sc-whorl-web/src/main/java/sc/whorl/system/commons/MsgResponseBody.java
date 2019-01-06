@@ -1,6 +1,8 @@
 package sc.whorl.system.commons;
 
-public class MsgResponseBody<T> {
+import java.io.Serializable;
+
+public class MsgResponseBody<T> implements Serializable {
     private static final String SUCCESS = "0";
     private static final String ERROR = "1";
     private String resultCode;

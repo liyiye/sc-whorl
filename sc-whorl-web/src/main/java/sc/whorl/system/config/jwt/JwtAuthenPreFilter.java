@@ -4,7 +4,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.BadCredentialsException;
-import org.springframework.security.authentication.InsufficientAuthenticationException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -114,7 +113,8 @@ public class JwtAuthenPreFilter extends OncePerRequestFilter {
                     SecurityContextHolder.getContext().setAuthentication(authentication);
                 }else{
                     //需要校验却无用户token
-                    throw new InsufficientAuthenticationException(ErrorCodeEnum.NO_TOKEN.getMessage());
+                    System.out.println("无header请求-->" + httpServletRequest.getRequestURI());
+                   // throw new InsufficientAuthenticationException(ErrorCodeEnum.NO_TOKEN.getMessage());
                 }
             } catch (Exception e) {
                 log.info("令牌解析失败!", e);

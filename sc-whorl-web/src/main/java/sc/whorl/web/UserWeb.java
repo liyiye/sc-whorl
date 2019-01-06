@@ -1,7 +1,9 @@
 package sc.whorl.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.annotations.Api;
@@ -25,8 +27,8 @@ public class UserWeb {
     /**
      * 登陆接口
      */
-    @ApiOperation(value = "用户登出", httpMethod = "POST")
-    @RequestMapping("/logout")
+    @ApiOperation(value = "用户登出", httpMethod = "POST",code = 200,produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/logout",method = RequestMethod.POST, produces = { "application/json"})
     public void logout() {
         userService.logout();
     }

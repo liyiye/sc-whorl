@@ -100,6 +100,7 @@
     </build>
 
     <repositories>
+
         <repository>
             <id>aliyun</id>
             <name>aliyun</name>

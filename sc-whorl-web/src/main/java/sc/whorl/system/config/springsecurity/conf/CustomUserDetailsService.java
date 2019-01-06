@@ -5,7 +5,6 @@ import com.google.common.base.Function;
 import com.google.common.collect.Lists;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -52,7 +51,6 @@ public class CustomUserDetailsService implements UserDetailsService {
 
 
     @Override
-    @Cacheable(key = "#username", value = "SC-USERDETAIL")
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         log.info("登录用户：" + username);
         //用户用户信息和用户角色
