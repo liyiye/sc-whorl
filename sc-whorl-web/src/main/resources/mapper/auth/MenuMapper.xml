@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="sc.whorl.logic.domain.dao.auth.MenuMapper" >
-  <resultMap id="BaseResultMap" type="sc.whorl.logic.domain.model.auth.Menu" >
+<mapper namespace="sc.whorl.logic.domain.dao.system.MenuMapper" >
+    <resultMap id="BaseResultMap" type="sc.whorl.logic.domain.model.system.Menu" >
     <!--
       WARNING - @mbg.generated
     -->
@@ -18,4 +18,16 @@
     <result column="modifyBy" property="modifyby" jdbcType="VARCHAR" />
     <result column="order" property="order" jdbcType="INTEGER" />
   </resultMap>
+
+    <select id="selectMenuByUserId" resultType="sc.whorl.logic.domain.model.system.ext.ExtMenu">
+         SELECT
+                f.tid parnetId,f.menuName parentMenuName,d.tid menuId,d.menuName,d.menuUrl,d.applicationCode,d.order
+            FROM
+                `user` a
+            INNER JOIN userrole b ON a.tid = b.userId
+            INNER JOIN rolepermission c ON b.roleId = c.roleId
+            INNER JOIN menu d ON c.permissionId = d.permissionId
+            LEFT JOIN menu f on d.parentId=f.tid and f.parentId=0
+            where a.`status`='EBL' AND B.`status`='EBL' and c.`status`='EBL' and d.`status`='EBL' and a.tid=#{userId} ORDER BY d.tid desc
+    </select>
 </mapper>

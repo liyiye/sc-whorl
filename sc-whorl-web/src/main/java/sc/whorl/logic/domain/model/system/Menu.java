@@ -1,4 +1,4 @@
-package sc.whorl.logic.domain.model.auth;
+package sc.whorl.logic.domain.model.system;
 
 import java.util.Date;
 import javax.persistence.*;
