@@ -1,0 +1,179 @@
+/*
+ * Copyright (C),2015-2015. 城家酒店管理有限公司
+ * FileName: PageCondition.java
+ * Author:   wangpeng
+ * Date:     2015-11-23 13:28:03
+ * Description: //模块目的、功能描述
+ * History: //修改记录 修改人姓名 修改时间 版本号 描述 需求来源
+ * <wangpeng>  <2015-11-23 13:28:03> <1.0.0> <创建> <PMS1.0>
+ */
+
+package sc.whorl.system.commons;
+
+import java.io.Serializable;
+
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+
+/**
+ * 分页业务对象。<br/>
+ *
+ * @auth: wangpeng
+ * @since cjia-commons-base-api-1.0.0
+ */
+public class PageCondition implements Serializable {
+
+    /**
+     * 页码数
+     */
+    @NotNull
+    @Min(1)
+    private int pageIndex;
+
+    /**
+     * 页面大小
+     */
+    @NotNull
+    @Min(0)
+    private int pageSize;
+
+    /**
+     * 排序字段，可为空
+     */
+    private Integer sortBy;
+
+    /**
+     * 排序方案，取值有ASC SortDirection.ASC}和{SortDirection.DESC}<br/>
+     * 默认值为升序排列
+     */
+    private SortDirection direction = SortDirection.ASC;
+
+    /**
+     * 默认构造函数
+     */
+    public PageCondition() {
+    }
+
+    /**
+     * 通过页码和页大小构造分页条件对象。
+     *
+     * @param pageIndex
+     *         页码数
+     * @param pageSize
+     *         页大小
+     */
+    public PageCondition(int pageIndex, int pageSize) {
+        this.pageIndex = pageIndex;
+        this.pageSize = pageSize;
+    }
+
+    /**
+     * 通过排序标记和排序规则构建排序对象。
+     *
+     * @param sortBy
+     *         排序标记
+     * @param direction
+     *         排序规则
+     */
+    public PageCondition(Integer sortBy, SortDirection direction) {
+        this.sortBy = sortBy;
+        this.direction = direction;
+    }
+
+    /**
+     * 通过页码和页大小、排序标记和排序规则分页排序对象。
+     *
+     * @param pageIndex
+     *         页码
+     * @param pageSize
+     *         页大小
+     * @param sortBy
+     *         排序标记
+     * @param direction
+     *         排序规则
+     */
+    public PageCondition(int pageIndex, int pageSize, Integer sortBy, SortDirection direction) {
+        this.pageIndex = pageIndex;
+        this.pageSize = pageSize;
+        this.sortBy = sortBy;
+        this.direction = direction;
+    }
+
+    /**
+     * 获取页码数
+     *
+     * @return 页码数
+     */
+    public int getPageIndex() {
+        return pageIndex;
+    }
+
+    /**
+     * 设置页码数
+     *
+     * @param pageIndex
+     *         页码数
+     */
+    public void setPageIndex(int pageIndex) {
+        this.pageIndex = pageIndex;
+    }
+
+    /**
+     * 获取页面大小
+     *
+     * @return 页面大小
+     */
+    public int getPageSize() {
+        return pageSize;
+    }
+
+    /**
+     * 获取页面大小
+     *
+     * @param pageSize
+     *         页面大小
+     */
+    public void setPageSize(int pageSize) {
+        this.pageSize = pageSize;
+    }
+
+    /**
+     * 设置排序方案
+     *
+     * @return 排序方案
+     */
+    public Integer getSortBy() {
+        return sortBy;
+    }
+
+    /**
+     * 获取排序方案
+     *
+     * @param sortBy
+     *         排序方案
+     */
+    public void setSortBy(Integer sortBy) {
+        this.sortBy = sortBy;
+    }
+
+    /**
+     * 设置排序规则，默认值为{@link cjia.commons.base.conditon.SortDirection#ASC SortDirection.ASC}
+     *
+     * @return 排序规则，取值有{@link cjia.commons.base.conditon.SortDirection#ASC SortDirection.ASC}和{@link
+     * cjia.commons.base.conditon.SortDirection#DESC SortDirection.DESC}
+     */
+    public SortDirection getDirection() {
+        return direction;
+    }
+
+    /**
+     * 获取排序规则
+     *
+     * @param direction
+     *         排序规则，取值有{@link cjia.commons.base.conditon.SortDirection#ASC SortDirection.ASC}和{@link
+     *         cjia.commons.base.conditon.SortDirection#DESC SortDirection.DESC}
+     */
+    public void setDirection(SortDirection direction) {
+        this.direction = direction;
+    }
+}

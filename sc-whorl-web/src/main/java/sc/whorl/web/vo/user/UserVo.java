@@ -1,4 +1,4 @@
-package sc.whorl.logic.pojo.auth;
+package sc.whorl.web.vo.user;
 
 /**
  * <一句话功能简述>

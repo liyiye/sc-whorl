@@ -13,7 +13,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
-import sc.whorl.logic.pojo.auth.UserVo;
+import sc.whorl.web.vo.user.UserVo;
 import sc.whorl.system.utils.mapper.JsonMapper;
 
 /**

@@ -24,7 +24,7 @@ import javax.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
 import sc.whorl.logic.domain.dao.auth.UserMapper;
 import sc.whorl.logic.domain.model.auth.User;
-import sc.whorl.logic.pojo.auth.UserVo;
+import sc.whorl.web.vo.user.UserVo;
 import sc.whorl.system.commons.MsgResponseBody;
 import sc.whorl.system.commons.SenUnitDic;
 import sc.whorl.system.commons.SenUnitException;
