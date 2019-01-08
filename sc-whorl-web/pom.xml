@@ -133,14 +133,14 @@
     </dependencies>
     <build>
         <resources>
-            <!-- 打包所有jar包 -->
-            <resource>
+            <!-- 打包所有jar包, -->
+    <!--        <resource>
                 <directory>lib</directory>
                 <targetPath>BOOT-INF/lib/</targetPath>
                 <includes>
                     <include>**/*.jar</include>
                 </includes>
-            </resource>
+            </resource>-->
             <resource>
                 <directory>src/main/resources</directory>
                 <filtering>true</filtering>

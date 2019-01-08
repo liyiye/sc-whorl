@@ -33,36 +33,11 @@
             <property name="enableSubPackages" value="true" />
         </javaClientGenerator>
 
-        <table tableName="menu">
-            <!--mysql 配置-->
-            <generatedKey column="pid" sqlStatement="Mysql" identity="true"/>
-            <!--oracle 配置-->
-            <!--<generatedKey column="id" sqlStatement="select SEQ_{1}.nextval from dual" identity="false" type="pre"/>-->
+        <table schema="" tableName="menu" domainObjectName="Menu">
+            <property name="useActualColumnNames" value="true"/>
+            <generatedKey column="tid"  sqlStatement="Mysql" identity="true"/>
         </table>
-        <!--<table tableName="role">
-            &lt;!&ndash;mysql 配置&ndash;&gt;
-            <generatedKey column="pid" sqlStatement="Mysql" identity="true"/>
-            &lt;!&ndash;oracle 配置&ndash;&gt;
-            &lt;!&ndash;<generatedKey column="id" sqlStatement="select SEQ_{1}.nextval from dual" identity="false" type="pre"/>&ndash;&gt;
-        </table>
-        <table tableName="rolepermission">
-            &lt;!&ndash;mysql 配置&ndash;&gt;
-            <generatedKey column="pid" sqlStatement="Mysql" identity="true"/>
-            &lt;!&ndash;oracle 配置&ndash;&gt;
-            &lt;!&ndash;<generatedKey column="id" sqlStatement="select SEQ_{1}.nextval from dual" identity="false" type="pre"/>&ndash;&gt;
-        </table>
-        <table tableName="user">
-            &lt;!&ndash;mysql 配置&ndash;&gt;
-            <generatedKey column="pid" sqlStatement="Mysql" identity="true"/>
-            &lt;!&ndash;oracle 配置&ndash;&gt;
-            &lt;!&ndash;<generatedKey column="id" sqlStatement="select SEQ_{1}.nextval from dual" identity="false" type="pre"/>&ndash;&gt;
-        </table>
-        <table tableName="userrole">
-            &lt;!&ndash;mysql 配置&ndash;&gt;
-            <generatedKey column="pid" sqlStatement="Mysql" identity="true"/>
-            &lt;!&ndash;oracle 配置&ndash;&gt;
-            &lt;!&ndash;<generatedKey column="id" sqlStatement="select SEQ_{1}.nextval from dual" identity="false" type="pre"/>&ndash;&gt;
-        </table>-->
+
 
     </context>
 </generatorConfiguration>
