@@ -83,8 +83,8 @@ public class UserService extends BaseService<UserMapper, User> {
             throw new SenUnitException(SenUnitDic.RESULT_CODE_SERVICE_UNAVAILABLE, "账户已存在!");
         }
         User users = new User();
-        users.setLoginname(userVo.getAccountname());
-        users.setPassword(bCryptPasswordEncoder.encode(userVo.getPassword()));
+        users.setLoginName(userVo.getAccountname());
+        users.setPassWord(bCryptPasswordEncoder.encode(userVo.getPassword()));
         users.setMobile(userVo.getUserPhone());
         users.setStatus("EBL");
         this.insert(users);
@@ -99,13 +99,13 @@ public class UserService extends BaseService<UserMapper, User> {
      */
     public MsgResponseBody<JWTUserDetail>  login(UserVo userVo) {
         User user = new User();
-        user.setLoginname(userVo.getAccountname());
+        user.setLoginName(userVo.getAccountname());
         User userOne = selectOne(user);
         if (ObjectUtils.isEmpty(userOne)) {
             log.info("用户不存在!");
             return MsgResponseBody.error(ErrorCodeEnum.LOGIN_INCORRECT.getCode()).setResult(ErrorCodeEnum.LOGIN_INCORRECT.getMessage());
         }
-        if (!bCryptPasswordEncoder.matches(userVo.getPassword(), userOne.getPassword())) {
+        if (!bCryptPasswordEncoder.matches(userVo.getPassword(), userOne.getPassWord())) {
             log.info("用户登陆密码错误!");
             return MsgResponseBody.error(ErrorCodeEnum.LOGIN_INCORRECT.getCode()).setResult(ErrorCodeEnum.LOGIN_INCORRECT.getMessage());
         }
@@ -118,7 +118,7 @@ public class UserService extends BaseService<UserMapper, User> {
         SecurityContextHolder.getContext().setAuthentication(authentication);
         //使用jwt生成token 用于权限效验
         JWTUserDetail jwtUserDetail = new JWTUserDetail();
-        jwtUserDetail.setLoginName(userOne.getLoginname());
+        jwtUserDetail.setLoginName(userOne.getLoginName());
         jwtUserDetail.setLoginTime(new Date());
         jwtUserDetail.setUserId(userOne.getTid());
         jwtUserDetail.setUserType(JWTUserDetail.UserType.User);

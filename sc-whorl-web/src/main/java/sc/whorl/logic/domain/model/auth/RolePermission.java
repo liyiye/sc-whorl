@@ -1,40 +1,52 @@
 package sc.whorl.logic.domain.model.auth;
 
-import java.util.Date;
-import javax.persistence.*;
+import org.apache.ibatis.type.Alias;
 
-public class Rolepermission {
+import java.util.Date;
+
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Alias("rolePermission")
+@Table(name = "rolepermission")
+public class RolePermission {
     @Id
+    @Column(name = "tid")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long tid;
 
     /**
      * 角色编号
      */
     @Column(name = "roleId")
-    private Long roleid;
+    private Long roleId;
 
     /**
      * 权限Id
      */
     @Column(name = "permissionId")
-    private Long permissionid;
+    private Long permissionId;
 
     /**
      * 状态EBL-可用,DBL-不可用
      */
+    @Column(name = "status")
     private String status;
 
     @Column(name = "createAt")
-    private Date createat;
+    private Date createAt;
 
     @Column(name = "createBy")
-    private String createby;
+    private String createBy;
 
     @Column(name = "modifyAt")
-    private Date modifyat;
+    private Date modifyAt;
 
     @Column(name = "modifyBy")
-    private String modifyby;
+    private String modifyBy;
 
     /**
      * @return tid
@@ -55,17 +67,17 @@ public class Rolepermission {
      *
      * @return roleId - 角色编号
      */
-    public Long getRoleid() {
-        return roleid;
+    public Long getRoleId() {
+        return roleId;
     }
 
     /**
      * 设置角色编号
      *
-     * @param roleid 角色编号
+     * @param roleId 角色编号
      */
-    public void setRoleid(Long roleid) {
-        this.roleid = roleid;
+    public void setRoleId(Long roleId) {
+        this.roleId = roleId;
     }
 
     /**
@@ -73,17 +85,17 @@ public class Rolepermission {
      *
      * @return permissionId - 权限Id
      */
-    public Long getPermissionid() {
-        return permissionid;
+    public Long getPermissionId() {
+        return permissionId;
     }
 
     /**
      * 设置权限Id
      *
-     * @param permissionid 权限Id
+     * @param permissionId 权限Id
      */
-    public void setPermissionid(Long permissionid) {
-        this.permissionid = permissionid;
+    public void setPermissionId(Long permissionId) {
+        this.permissionId = permissionId;
     }
 
     /**
@@ -107,56 +119,56 @@ public class Rolepermission {
     /**
      * @return createAt
      */
-    public Date getCreateat() {
-        return createat;
+    public Date getCreateAt() {
+        return createAt;
     }
 
     /**
-     * @param createat
+     * @param createAt
      */
-    public void setCreateat(Date createat) {
-        this.createat = createat;
+    public void setCreateAt(Date createAt) {
+        this.createAt = createAt;
     }
 
     /**
      * @return createBy
      */
-    public String getCreateby() {
-        return createby;
+    public String getCreateBy() {
+        return createBy;
     }
 
     /**
-     * @param createby
+     * @param createBy
      */
-    public void setCreateby(String createby) {
-        this.createby = createby;
+    public void setCreateBy(String createBy) {
+        this.createBy = createBy;
     }
 
     /**
      * @return modifyAt
      */
-    public Date getModifyat() {
-        return modifyat;
+    public Date getModifyAt() {
+        return modifyAt;
     }
 
     /**
-     * @param modifyat
+     * @param modifyAt
      */
-    public void setModifyat(Date modifyat) {
-        this.modifyat = modifyat;
+    public void setModifyAt(Date modifyAt) {
+        this.modifyAt = modifyAt;
     }
 
     /**
      * @return modifyBy
      */
-    public String getModifyby() {
-        return modifyby;
+    public String getModifyBy() {
+        return modifyBy;
     }
 
     /**
-     * @param modifyby
+     * @param modifyBy
      */
-    public void setModifyby(String modifyby) {
-        this.modifyby = modifyby;
+    public void setModifyBy(String modifyBy) {
+        this.modifyBy = modifyBy;
     }
 }

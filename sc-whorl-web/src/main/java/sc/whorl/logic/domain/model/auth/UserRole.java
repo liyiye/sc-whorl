@@ -1,43 +1,55 @@
 package sc.whorl.logic.domain.model.auth;
 
-import java.util.Date;
-import javax.persistence.*;
+import org.apache.ibatis.type.Alias;
 
-public class Userrole {
+import java.util.Date;
+
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Alias("userRole")
+@Table(name = "userrole")
+public class UserRole {
     /**
      * 用户校色主编号,自增
      */
     @Id
+    @Column(name = "tid")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long tid;
 
     /**
      * 用户编号
      */
     @Column(name = "userId")
-    private Long userid;
+    private Long userId;
 
     /**
      * 角色编号
      */
     @Column(name = "roleId")
-    private Long roleid;
+    private Long roleId;
 
     /**
      * 状态EBL-可用,DBL-不可用
      */
+    @Column(name = "status")
     private String status;
 
     @Column(name = "createAt")
-    private Date createat;
+    private Date createAt;
 
     @Column(name = "createBy")
-    private String createby;
+    private String createBy;
 
     @Column(name = "modifyAt")
-    private Date modifyat;
+    private Date modifyAt;
 
     @Column(name = "modifyBy")
-    private String modifyby;
+    private String modifyBy;
 
     /**
      * 获取用户校色主编号,自增
@@ -62,17 +74,17 @@ public class Userrole {
      *
      * @return userId - 用户编号
      */
-    public Long getUserid() {
-        return userid;
+    public Long getUserId() {
+        return userId;
     }
 
     /**
      * 设置用户编号
      *
-     * @param userid 用户编号
+     * @param userId 用户编号
      */
-    public void setUserid(Long userid) {
-        this.userid = userid;
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
     /**
@@ -80,17 +92,17 @@ public class Userrole {
      *
      * @return roleId - 角色编号
      */
-    public Long getRoleid() {
-        return roleid;
+    public Long getRoleId() {
+        return roleId;
     }
 
     /**
      * 设置角色编号
      *
-     * @param roleid 角色编号
+     * @param roleId 角色编号
      */
-    public void setRoleid(Long roleid) {
-        this.roleid = roleid;
+    public void setRoleId(Long roleId) {
+        this.roleId = roleId;
     }
 
     /**
@@ -114,56 +126,56 @@ public class Userrole {
     /**
      * @return createAt
      */
-    public Date getCreateat() {
-        return createat;
+    public Date getCreateAt() {
+        return createAt;
     }
 
     /**
-     * @param createat
+     * @param createAt
      */
-    public void setCreateat(Date createat) {
-        this.createat = createat;
+    public void setCreateAt(Date createAt) {
+        this.createAt = createAt;
     }
 
     /**
      * @return createBy
      */
-    public String getCreateby() {
-        return createby;
+    public String getCreateBy() {
+        return createBy;
     }
 
     /**
-     * @param createby
+     * @param createBy
      */
-    public void setCreateby(String createby) {
-        this.createby = createby;
+    public void setCreateBy(String createBy) {
+        this.createBy = createBy;
     }
 
     /**
      * @return modifyAt
      */
-    public Date getModifyat() {
-        return modifyat;
+    public Date getModifyAt() {
+        return modifyAt;
     }
 
     /**
-     * @param modifyat
+     * @param modifyAt
      */
-    public void setModifyat(Date modifyat) {
-        this.modifyat = modifyat;
+    public void setModifyAt(Date modifyAt) {
+        this.modifyAt = modifyAt;
     }
 
     /**
      * @return modifyBy
      */
-    public String getModifyby() {
-        return modifyby;
+    public String getModifyBy() {
+        return modifyBy;
     }
 
     /**
-     * @param modifyby
+     * @param modifyBy
      */
-    public void setModifyby(String modifyby) {
-        this.modifyby = modifyby;
+    public void setModifyBy(String modifyBy) {
+        this.modifyBy = modifyBy;
     }
 }

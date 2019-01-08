@@ -1,43 +1,55 @@
 package sc.whorl.logic.domain.model.auth;
 
-import java.util.Date;
-import javax.persistence.*;
+import org.apache.ibatis.type.Alias;
 
+import java.util.Date;
+
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Alias("permission")
+@Table(name = "permission")
 public class Permission {
     /**
      * 记录编号,自增
      */
     @Id
+    @Column(name = "tid")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long tid;
 
     /**
      * 权限名称
      */
     @Column(name = "permissionName")
-    private String permissionname;
+    private String permissionName;
 
     /**
      * 权限描述
      */
+    @Column(name = "description")
     private String description;
 
     /**
      * 权限代码
      */
     @Column(name = "functionNumber")
-    private String functionnumber;
+    private String functionNumber;
 
     @Column(name = "createAt")
-    private Date createat;
+    private Date createAt;
 
     @Column(name = "createBy")
-    private String createby;
+    private String createBy;
 
     @Column(name = "modifyAt")
-    private Date modifyat;
+    private Date modifyAt;
 
     @Column(name = "modifyBy")
-    private String modifyby;
+    private String modifyBy;
 
     /**
      * 获取记录编号,自增
@@ -62,17 +74,17 @@ public class Permission {
      *
      * @return permissionName - 权限名称
      */
-    public String getPermissionname() {
-        return permissionname;
+    public String getPermissionName() {
+        return permissionName;
     }
 
     /**
      * 设置权限名称
      *
-     * @param permissionname 权限名称
+     * @param permissionName 权限名称
      */
-    public void setPermissionname(String permissionname) {
-        this.permissionname = permissionname;
+    public void setPermissionName(String permissionName) {
+        this.permissionName = permissionName;
     }
 
     /**
@@ -98,72 +110,72 @@ public class Permission {
      *
      * @return functionNumber - 权限代码
      */
-    public String getFunctionnumber() {
-        return functionnumber;
+    public String getFunctionNumber() {
+        return functionNumber;
     }
 
     /**
      * 设置权限代码
      *
-     * @param functionnumber 权限代码
+     * @param functionNumber 权限代码
      */
-    public void setFunctionnumber(String functionnumber) {
-        this.functionnumber = functionnumber;
+    public void setFunctionNumber(String functionNumber) {
+        this.functionNumber = functionNumber;
     }
 
     /**
      * @return createAt
      */
-    public Date getCreateat() {
-        return createat;
+    public Date getCreateAt() {
+        return createAt;
     }
 
     /**
-     * @param createat
+     * @param createAt
      */
-    public void setCreateat(Date createat) {
-        this.createat = createat;
+    public void setCreateAt(Date createAt) {
+        this.createAt = createAt;
     }
 
     /**
      * @return createBy
      */
-    public String getCreateby() {
-        return createby;
+    public String getCreateBy() {
+        return createBy;
     }
 
     /**
-     * @param createby
+     * @param createBy
      */
-    public void setCreateby(String createby) {
-        this.createby = createby;
+    public void setCreateBy(String createBy) {
+        this.createBy = createBy;
     }
 
     /**
      * @return modifyAt
      */
-    public Date getModifyat() {
-        return modifyat;
+    public Date getModifyAt() {
+        return modifyAt;
     }
 
     /**
-     * @param modifyat
+     * @param modifyAt
      */
-    public void setModifyat(Date modifyat) {
-        this.modifyat = modifyat;
+    public void setModifyAt(Date modifyAt) {
+        this.modifyAt = modifyAt;
     }
 
     /**
      * @return modifyBy
      */
-    public String getModifyby() {
-        return modifyby;
+    public String getModifyBy() {
+        return modifyBy;
     }
 
     /**
-     * @param modifyby
+     * @param modifyBy
      */
-    public void setModifyby(String modifyby) {
-        this.modifyby = modifyby;
+    public void setModifyBy(String modifyBy) {
+        this.modifyBy = modifyBy;
     }
 }

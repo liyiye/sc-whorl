@@ -52,7 +52,7 @@ public class SystemWebTest {
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.add("Content-Type", "application/json");
         httpHeaders.add("Authorization", "Bearer-eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzZW5zc2ljIiwiSldUX0xPR0lOX05BTUUiOiJzZW5zc2ljIiwiSldUX0xPR0lOX1RJTUUiOjE1NDY4NTkzNDkzMzEsIkpXVF9MT0dJTl9VU0VSSUQiOjEsIkpXVF9MT0dJTl9VU0VSVFlQRSI6IlVzZXIiLCJleHAiOjE1NDk0NTEzNDksImlhdCI6MTU0Njg1OTM0OSwianRpIjoiNDJiNTQ0YzctMzRjNC00Mjc4LWFhZWMtNTU5MmQzYmJkM2ZjIn0.mq5NTHdrmmKke_bgQ6YOssbaaYfL1lGvft2E7Eq9SCE");
-        mvc.perform(MockMvcRequestBuilders.post("/sc/user/system/delMenu/1").
+        mvc.perform(MockMvcRequestBuilders.post("/sc/user/system/delMenu/8").
                 headers(httpHeaders).
                 accept(MediaType.APPLICATION_JSON_UTF8)).andExpect(MockMvcResultMatchers.status().isOk()).
                 andDo(MockMvcResultHandlers.print()).

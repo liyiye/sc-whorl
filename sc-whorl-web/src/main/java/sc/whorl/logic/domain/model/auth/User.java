@@ -2,57 +2,65 @@ package sc.whorl.logic.domain.model.auth;
 
 import java.util.Date;
 import javax.persistence.*;
+import org.apache.ibatis.type.Alias;
 
+@Alias("user")
+@Table(name = "user")
 public class User {
     /**
      * 记录标识,自增
      */
     @Id
+    @Column(name = "tid")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long tid;
 
     /**
      * 登陆账号,不为空
      */
     @Column(name = "loginName")
-    private String loginname;
+    private String loginName;
 
     /**
      * 用户密码
      */
     @Column(name = "passWord")
-    private String password;
+    private String passWord;
 
     /**
      * 用户姓名
      */
     @Column(name = "userName")
-    private String username;
+    private String userName;
 
     /**
      * 用户手机号
      */
+    @Column(name = "mobile")
     private String mobile;
 
     /**
      * 用户时间
      */
+    @Column(name = "email")
     private String email;
 
     @Column(name = "createAt")
-    private Date createat;
+    private Date createAt;
 
     @Column(name = "createBy")
-    private String createby;
+    private String createBy;
 
     @Column(name = "modifyAt")
-    private Date modifyat;
+    private Date modifyAt;
 
     @Column(name = "modifyBy")
-    private String modifyby;
+    private String modifyBy;
 
     /**
      * EBL-可用,DBL-不可用
      */
+    @Column(name = "status")
     private String status;
 
     /**
@@ -78,17 +86,17 @@ public class User {
      *
      * @return loginName - 登陆账号,不为空
      */
-    public String getLoginname() {
-        return loginname;
+    public String getLoginName() {
+        return loginName;
     }
 
     /**
      * 设置登陆账号,不为空
      *
-     * @param loginname 登陆账号,不为空
+     * @param loginName 登陆账号,不为空
      */
-    public void setLoginname(String loginname) {
-        this.loginname = loginname;
+    public void setLoginName(String loginName) {
+        this.loginName = loginName;
     }
 
     /**
@@ -96,17 +104,17 @@ public class User {
      *
      * @return passWord - 用户密码
      */
-    public String getPassword() {
-        return password;
+    public String getPassWord() {
+        return passWord;
     }
 
     /**
      * 设置用户密码
      *
-     * @param password 用户密码
+     * @param passWord 用户密码
      */
-    public void setPassword(String password) {
-        this.password = password;
+    public void setPassWord(String passWord) {
+        this.passWord = passWord;
     }
 
     /**
@@ -114,17 +122,17 @@ public class User {
      *
      * @return userName - 用户姓名
      */
-    public String getUsername() {
-        return username;
+    public String getUserName() {
+        return userName;
     }
 
     /**
      * 设置用户姓名
      *
-     * @param username 用户姓名
+     * @param userName 用户姓名
      */
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     /**
@@ -166,57 +174,57 @@ public class User {
     /**
      * @return createAt
      */
-    public Date getCreateat() {
-        return createat;
+    public Date getCreateAt() {
+        return createAt;
     }
 
     /**
-     * @param createat
+     * @param createAt
      */
-    public void setCreateat(Date createat) {
-        this.createat = createat;
+    public void setCreateAt(Date createAt) {
+        this.createAt = createAt;
     }
 
     /**
      * @return createBy
      */
-    public String getCreateby() {
-        return createby;
+    public String getCreateBy() {
+        return createBy;
     }
 
     /**
-     * @param createby
+     * @param createBy
      */
-    public void setCreateby(String createby) {
-        this.createby = createby;
+    public void setCreateBy(String createBy) {
+        this.createBy = createBy;
     }
 
     /**
      * @return modifyAt
      */
-    public Date getModifyat() {
-        return modifyat;
+    public Date getModifyAt() {
+        return modifyAt;
     }
 
     /**
-     * @param modifyat
+     * @param modifyAt
      */
-    public void setModifyat(Date modifyat) {
-        this.modifyat = modifyat;
+    public void setModifyAt(Date modifyAt) {
+        this.modifyAt = modifyAt;
     }
 
     /**
      * @return modifyBy
      */
-    public String getModifyby() {
-        return modifyby;
+    public String getModifyBy() {
+        return modifyBy;
     }
 
     /**
-     * @param modifyby
+     * @param modifyBy
      */
-    public void setModifyby(String modifyby) {
-        this.modifyby = modifyby;
+    public void setModifyBy(String modifyBy) {
+        this.modifyBy = modifyBy;
     }
 
     /**

@@ -3,16 +3,16 @@
 <mapper namespace="sc.whorl.logic.domain.dao.auth.PermissionMapper">
   <resultMap id="BaseResultMap" type="sc.whorl.logic.domain.model.auth.Permission">
     <!--
-      WARNING - @mbg.generated
+      WARNING - @mbggenerated
     -->
     <id column="tid" jdbcType="BIGINT" property="tid" />
-    <result column="permissionName" jdbcType="VARCHAR" property="permissionname" />
+    <result column="permissionName" jdbcType="VARCHAR" property="permissionName" />
     <result column="description" jdbcType="VARCHAR" property="description" />
-    <result column="functionNumber" jdbcType="VARCHAR" property="functionnumber" />
-    <result column="createAt" jdbcType="TIMESTAMP" property="createat" />
-    <result column="createBy" jdbcType="VARCHAR" property="createby" />
-    <result column="modifyAt" jdbcType="TIMESTAMP" property="modifyat" />
-    <result column="modifyBy" jdbcType="VARCHAR" property="modifyby" />
+    <result column="functionNumber" jdbcType="VARCHAR" property="functionNumber" />
+    <result column="createAt" jdbcType="TIMESTAMP" property="createAt" />
+    <result column="createBy" jdbcType="VARCHAR" property="createBy" />
+    <result column="modifyAt" jdbcType="TIMESTAMP" property="modifyAt" />
+    <result column="modifyBy" jdbcType="VARCHAR" property="modifyBy" />
   </resultMap>
 
 </mapper>

@@ -55,7 +55,7 @@ public class CustomUserDetailsService implements UserDetailsService {
         log.info("登录用户：" + username);
         //用户用户信息和用户角色
         User user = new User();
-        user.setLoginname(username);
+        user.setLoginName(username);
         User userOne = userMapper.selectOne(user);
         if (ObjectUtils.isEmpty(userOne)) {
             //后台抛出的异常是：org.springframework.security.authentication.BadCredentialsException: Bad credentials  坏的凭证 如果要抛出UsernameNotFoundException 用户找不到异常则需要自定义重新它的异常
@@ -65,9 +65,9 @@ public class CustomUserDetailsService implements UserDetailsService {
         Set<GrantedAuthority> grantedAuths = new HashSet<GrantedAuthority>();
         List<Role> roles = userMapper.selectRolsByUserId(userOne.getTid());
         if (!ObjectUtils.isEmpty(roles)) {
-            grantedAuths.addAll(Lists.transform(roles, (Function<Role, GrantedAuthority>) role -> new SimpleGrantedAuthority("ROLE_" + role.getRolename())));
+            grantedAuths.addAll(Lists.transform(roles, (Function<Role, GrantedAuthority>) role -> new SimpleGrantedAuthority("ROLE_" + role.getRoleName())));
         }
-        org.springframework.security.core.userdetails.User baseUser = new org.springframework.security.core.userdetails.User(userOne.getLoginname(), userOne.getPassword(),
+        org.springframework.security.core.userdetails.User baseUser = new org.springframework.security.core.userdetails.User(userOne.getLoginName(), userOne.getPassWord(),
                 grantedAuths);
         return baseUser;
     }

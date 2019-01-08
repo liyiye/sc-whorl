@@ -2,58 +2,54 @@ package sc.whorl.logic.domain.model.auth;
 
 import java.util.Date;
 import javax.persistence.*;
+import org.apache.ibatis.type.Alias;
 
+@Alias("role")
+@Table(name = "role")
 public class Role {
     /**
      * 记录编号,自增
      */
     @Id
+    @Column(name = "tid")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long tid;
 
     /**
      * 父级角色编号
      */
     @Column(name = "parentId")
-    private Long parentid;
+    private Long parentId;
 
     /**
      * 角色名称
      */
     @Column(name = "roleName")
-    private String rolename;
-    /**
-     * 使用状态
-     * EBL-可用
-     * DBL-不可用
-     */
-    @Column(name = "status")
-    private String status;
-
+    private String roleName;
 
     /**
      * 角色描述
      */
+    @Column(name = "description")
     private String description;
 
     @Column(name = "createAt")
-    private Date createat;
+    private Date createAt;
 
     @Column(name = "createBy")
-    private String createby;
+    private String createBy;
 
     @Column(name = "modifyAt")
-    private Date modifyat;
+    private Date modifyAt;
 
     @Column(name = "modifyBy")
-    private String modifyby;
+    private String modifyBy;
 
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
+    /**
+     * EBL-可用,DBL-不可用
+     */
+    @Column(name = "status")
+    private String status;
 
     /**
      * 获取记录编号,自增
@@ -78,17 +74,17 @@ public class Role {
      *
      * @return parentId - 父级角色编号
      */
-    public Long getParentid() {
-        return parentid;
+    public Long getParentId() {
+        return parentId;
     }
 
     /**
      * 设置父级角色编号
      *
-     * @param parentid 父级角色编号
+     * @param parentId 父级角色编号
      */
-    public void setParentid(Long parentid) {
-        this.parentid = parentid;
+    public void setParentId(Long parentId) {
+        this.parentId = parentId;
     }
 
     /**
@@ -96,17 +92,17 @@ public class Role {
      *
      * @return roleName - 角色名称
      */
-    public String getRolename() {
-        return rolename;
+    public String getRoleName() {
+        return roleName;
     }
 
     /**
      * 设置角色名称
      *
-     * @param rolename 角色名称
+     * @param roleName 角色名称
      */
-    public void setRolename(String rolename) {
-        this.rolename = rolename;
+    public void setRoleName(String roleName) {
+        this.roleName = roleName;
     }
 
     /**
@@ -130,56 +126,74 @@ public class Role {
     /**
      * @return createAt
      */
-    public Date getCreateat() {
-        return createat;
+    public Date getCreateAt() {
+        return createAt;
     }
 
     /**
-     * @param createat
+     * @param createAt
      */
-    public void setCreateat(Date createat) {
-        this.createat = createat;
+    public void setCreateAt(Date createAt) {
+        this.createAt = createAt;
     }
 
     /**
      * @return createBy
      */
-    public String getCreateby() {
-        return createby;
+    public String getCreateBy() {
+        return createBy;
     }
 
     /**
-     * @param createby
+     * @param createBy
      */
-    public void setCreateby(String createby) {
-        this.createby = createby;
+    public void setCreateBy(String createBy) {
+        this.createBy = createBy;
     }
 
     /**
      * @return modifyAt
      */
-    public Date getModifyat() {
-        return modifyat;
+    public Date getModifyAt() {
+        return modifyAt;
     }
 
     /**
-     * @param modifyat
+     * @param modifyAt
      */
-    public void setModifyat(Date modifyat) {
-        this.modifyat = modifyat;
+    public void setModifyAt(Date modifyAt) {
+        this.modifyAt = modifyAt;
     }
 
     /**
      * @return modifyBy
      */
-    public String getModifyby() {
-        return modifyby;
+    public String getModifyBy() {
+        return modifyBy;
     }
 
     /**
-     * @param modifyby
+     * @param modifyBy
      */
-    public void setModifyby(String modifyby) {
-        this.modifyby = modifyby;
+    public void setModifyBy(String modifyBy) {
+        this.modifyBy = modifyBy;
+    }
+
+    /**
+     * 获取EBL-可用,DBL-不可用
+     *
+     * @return status - EBL-可用,DBL-不可用
+     */
+    public String getStatus() {
+        return status;
+    }
+
+    /**
+     * 设置EBL-可用,DBL-不可用
+     *
+     * @param status EBL-可用,DBL-不可用
+     */
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

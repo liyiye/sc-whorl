@@ -1,63 +1,76 @@
 package sc.whorl.logic.domain.model.system;
 
-import java.util.Date;
-import javax.persistence.*;
+import org.apache.ibatis.type.Alias;
 
+import java.util.Date;
+
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Alias("menu")
+@Table(name = "menu")
 public class Menu {
     /**
      * 菜单表主键,标记唯一列自增
      */
     @Id
+    @Column(name = "tid")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long tid;
 
     /**
      * 父级菜单编号.如果没有父级则父级为0
      */
     @Column(name = "parentId")
-    private Long parentid;
+    private Long parentId;
 
     /**
      * 菜单Url
      */
     @Column(name = "menuUrl")
-    private String menuurl;
+    private String menuUrl;
 
     /**
      * 菜单名称
      */
     @Column(name = "menuName")
-    private String menuname;
+    private String menuName;
 
     /**
      * 关联权限表
      */
     @Column(name = "permissionId")
-    private Long permissionid;
+    private Long permissionId;
 
     /**
      * 状态EBL-可用,DBL-不可用
      */
+    @Column(name = "status")
     private String status;
 
     /**
      * 不同应用菜单的区分
      */
     @Column(name = "applicationCode")
-    private String applicationcode;
+    private String applicationCode;
 
     @Column(name = "createAt")
-    private Date createat;
+    private Date createAt;
 
     @Column(name = "createBy")
-    private String createby;
+    private String createBy;
 
     @Column(name = "modifyAt")
-    private Date modifyat;
+    private Date modifyAt;
 
     @Column(name = "modifyBy")
-    private String modifyby;
+    private String modifyBy;
 
-    private Integer order;
+    @Column(name = "orderIndex")
+    private Integer orderIndex;
 
     /**
      * 获取菜单表主键,标记唯一列自增
@@ -82,17 +95,17 @@ public class Menu {
      *
      * @return parentId - 父级菜单编号.如果没有父级则父级为0
      */
-    public Long getParentid() {
-        return parentid;
+    public Long getParentId() {
+        return parentId;
     }
 
     /**
      * 设置父级菜单编号.如果没有父级则父级为0
      *
-     * @param parentid 父级菜单编号.如果没有父级则父级为0
+     * @param parentId 父级菜单编号.如果没有父级则父级为0
      */
-    public void setParentid(Long parentid) {
-        this.parentid = parentid;
+    public void setParentId(Long parentId) {
+        this.parentId = parentId;
     }
 
     /**
@@ -100,17 +113,17 @@ public class Menu {
      *
      * @return menuUrl - 菜单Url
      */
-    public String getMenuurl() {
-        return menuurl;
+    public String getMenuUrl() {
+        return menuUrl;
     }
 
     /**
      * 设置菜单Url
      *
-     * @param menuurl 菜单Url
+     * @param menuUrl 菜单Url
      */
-    public void setMenuurl(String menuurl) {
-        this.menuurl = menuurl;
+    public void setMenuUrl(String menuUrl) {
+        this.menuUrl = menuUrl;
     }
 
     /**
@@ -118,17 +131,17 @@ public class Menu {
      *
      * @return menuName - 菜单名称
      */
-    public String getMenuname() {
-        return menuname;
+    public String getMenuName() {
+        return menuName;
     }
 
     /**
      * 设置菜单名称
      *
-     * @param menuname 菜单名称
+     * @param menuName 菜单名称
      */
-    public void setMenuname(String menuname) {
-        this.menuname = menuname;
+    public void setMenuName(String menuName) {
+        this.menuName = menuName;
     }
 
     /**
@@ -136,17 +149,17 @@ public class Menu {
      *
      * @return permissionId - 关联权限表
      */
-    public Long getPermissionid() {
-        return permissionid;
+    public Long getPermissionId() {
+        return permissionId;
     }
 
     /**
      * 设置关联权限表
      *
-     * @param permissionid 关联权限表
+     * @param permissionId 关联权限表
      */
-    public void setPermissionid(Long permissionid) {
-        this.permissionid = permissionid;
+    public void setPermissionId(Long permissionId) {
+        this.permissionId = permissionId;
     }
 
     /**
@@ -172,86 +185,86 @@ public class Menu {
      *
      * @return applicationCode - 不同应用菜单的区分
      */
-    public String getApplicationcode() {
-        return applicationcode;
+    public String getApplicationCode() {
+        return applicationCode;
     }
 
     /**
      * 设置不同应用菜单的区分
      *
-     * @param applicationcode 不同应用菜单的区分
+     * @param applicationCode 不同应用菜单的区分
      */
-    public void setApplicationcode(String applicationcode) {
-        this.applicationcode = applicationcode;
+    public void setApplicationCode(String applicationCode) {
+        this.applicationCode = applicationCode;
     }
 
     /**
      * @return createAt
      */
-    public Date getCreateat() {
-        return createat;
+    public Date getCreateAt() {
+        return createAt;
     }
 
     /**
-     * @param createat
+     * @param createAt
      */
-    public void setCreateat(Date createat) {
-        this.createat = createat;
+    public void setCreateAt(Date createAt) {
+        this.createAt = createAt;
     }
 
     /**
      * @return createBy
      */
-    public String getCreateby() {
-        return createby;
+    public String getCreateBy() {
+        return createBy;
     }
 
     /**
-     * @param createby
+     * @param createBy
      */
-    public void setCreateby(String createby) {
-        this.createby = createby;
+    public void setCreateBy(String createBy) {
+        this.createBy = createBy;
     }
 
     /**
      * @return modifyAt
      */
-    public Date getModifyat() {
-        return modifyat;
+    public Date getModifyAt() {
+        return modifyAt;
     }
 
     /**
-     * @param modifyat
+     * @param modifyAt
      */
-    public void setModifyat(Date modifyat) {
-        this.modifyat = modifyat;
+    public void setModifyAt(Date modifyAt) {
+        this.modifyAt = modifyAt;
     }
 
     /**
      * @return modifyBy
      */
-    public String getModifyby() {
-        return modifyby;
+    public String getModifyBy() {
+        return modifyBy;
     }
 
     /**
-     * @param modifyby
+     * @param modifyBy
      */
-    public void setModifyby(String modifyby) {
-        this.modifyby = modifyby;
+    public void setModifyBy(String modifyBy) {
+        this.modifyBy = modifyBy;
     }
 
     /**
-     * @return order
+     * @return orderIndex
      */
-    public Integer getOrder() {
-        return order;
+    public Integer getOrderIndex() {
+        return orderIndex;
     }
 
     /**
-     * @param order
+     * @param orderIndex
      */
-    public void setOrder(Integer order) {
-        this.order = order;
+    public void setOrderIndex(Integer orderIndex) {
+        this.orderIndex = orderIndex;
     }
 }

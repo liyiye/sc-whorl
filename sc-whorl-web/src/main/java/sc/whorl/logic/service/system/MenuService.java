@@ -68,14 +68,19 @@ public class MenuService extends BaseService<MenuMapper, Menu> {
         return menuInfos;
     }
 
+    @Transactional(rollbackFor = Exception.class)
     public void delMenu(Long menuId) {
+        Menu menu = selectByPrimaryKey(menuId);
+        if (!ScUtils.isEmpty(menu) && !ScUtils.isEmpty(menu.getPermissionId())) {
+            permissionMapper.deleteByPrimaryKey(menu.getPermissionId());
+        }
         this.deleteByPrimaryKey(menuId);
     }
 
     public PageResponse<Menu> searchListMenu(MenuRequest menuRequest) {
         PageHelper.startPage(menuRequest.getPageIndex(), menuRequest.getPageSize());
         Example example = new Example(Menu.class);
-        example.createCriteria().andNotEqualTo("parentid", "0");
+        example.createCriteria().andNotEqualTo("parentId", "0");
         List<Menu> menuList = selectByExample(example);
         PageInfo<Menu> pageInfo = new PageInfo<Menu>(menuList);
         return new PageResponse(pageInfo);
@@ -84,26 +89,26 @@ public class MenuService extends BaseService<MenuMapper, Menu> {
     @Transactional(rollbackFor = Exception.class)
     public void addMenu(MenuPremInfo menuPremInfo) {
         Permission permission = new Permission();
-        permission.setPermissionname(menuPremInfo.getMenuname());
+        permission.setPermissionName(menuPremInfo.getMenuname());
         permission.setDescription(menuPremInfo.getMenuname());
-        permission.setFunctionnumber(menuPremInfo.getFunctionNumber());
-        permission.setCreateat(new Date());
-        permission.setCreateby(UserAuthInfoUtils.getLoginName());
-        permission.setModifyat(new Date());
-        permission.setModifyby(UserAuthInfoUtils.getLoginName());
+        permission.setFunctionNumber(menuPremInfo.getFunctionNumber());
+        permission.setCreateAt(new Date());
+        permission.setCreateBy(UserAuthInfoUtils.getLoginName());
+        permission.setModifyAt(new Date());
+        permission.setModifyBy(UserAuthInfoUtils.getLoginName());
         permissionMapper.insertSelective(permission);
         Menu menu = new Menu();
-        menu.setParentid(menuPremInfo.getParentid());
-        menu.setMenuurl(menuPremInfo.getMenuurl());
-        menu.setMenuname(menuPremInfo.getMenuname());
-        menu.setPermissionid(permission.getTid());
+        menu.setParentId(menuPremInfo.getParentid());
+        menu.setMenuUrl(menuPremInfo.getMenuurl());
+        menu.setMenuName(menuPremInfo.getMenuname());
+        menu.setPermissionId(permission.getTid());
         menu.setStatus("EBL");
-        menu.setApplicationcode(menuPremInfo.getApplicationcode());
-        menu.setCreateat(new Date());
-        menu.setCreateby(UserAuthInfoUtils.getLoginName());
-        menu.setModifyat(new Date());
-        menu.setModifyby(UserAuthInfoUtils.getLoginName());
-        menu.setOrder(menuPremInfo.getOrder());
+        menu.setApplicationCode(menuPremInfo.getApplicationcode());
+        menu.setCreateAt(new Date());
+        menu.setCreateBy(UserAuthInfoUtils.getLoginName());
+        menu.setModifyAt(new Date());
+        menu.setModifyBy(UserAuthInfoUtils.getLoginName());
+        menu.setOrderIndex(menuPremInfo.getOrder());
         insertSelective(menu);
     }
 }

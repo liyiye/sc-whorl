@@ -3,20 +3,21 @@
 <mapper namespace="sc.whorl.logic.domain.dao.auth.UserMapper">
   <resultMap id="BaseResultMap" type="sc.whorl.logic.domain.model.auth.User">
     <!--
-      WARNING - @mbg.generated
+      WARNING - @mbggenerated
     -->
     <id column="tid" jdbcType="BIGINT" property="tid" />
-    <result column="loginName" jdbcType="VARCHAR" property="loginname" />
-    <result column="passWord" jdbcType="VARCHAR" property="password" />
-    <result column="userName" jdbcType="VARCHAR" property="username" />
+    <result column="loginName" jdbcType="VARCHAR" property="loginName" />
+    <result column="passWord" jdbcType="VARCHAR" property="passWord" />
+    <result column="userName" jdbcType="VARCHAR" property="userName" />
     <result column="mobile" jdbcType="VARCHAR" property="mobile" />
     <result column="email" jdbcType="VARCHAR" property="email" />
-    <result column="createAt" jdbcType="TIMESTAMP" property="createat" />
-    <result column="createBy" jdbcType="VARCHAR" property="createby" />
-    <result column="modifyAt" jdbcType="TIMESTAMP" property="modifyat" />
-    <result column="modifyBy" jdbcType="VARCHAR" property="modifyby" />
+    <result column="createAt" jdbcType="TIMESTAMP" property="createAt" />
+    <result column="createBy" jdbcType="VARCHAR" property="createBy" />
+    <result column="modifyAt" jdbcType="TIMESTAMP" property="modifyAt" />
+    <result column="modifyBy" jdbcType="VARCHAR" property="modifyBy" />
     <result column="status" jdbcType="VARCHAR" property="status" />
   </resultMap>
+
 
     <select id="selectRolsByUserId" resultType="sc.whorl.logic.domain.model.auth.Role">
         select b.* from user a INNER JOIN  userrole ur on a.tid=ur.userid INNER JOIN role b on ur.roleid=b.tid

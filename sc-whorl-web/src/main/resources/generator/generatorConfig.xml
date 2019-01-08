@@ -10,7 +10,7 @@
         <property name="beginningDelimiter" value="`"/>
         <property name="endingDelimiter" value="`"/>
         <property name="mergeable" value="false"></property>
-        <plugin type="tk.mybatis.mapper.generator.MapperPlugin">
+        <plugin type="com.sc.mybatis.generator.MapperPlugin">
             <property name="mappers" value="sc.whorl.system.commons.MyMapper"/>
             <!-- caseSensitive默认false，当数据库表名区分大小写时，可以将该属性设置为true -->
             <property name="caseSensitive" value="true"/>
@@ -24,16 +24,28 @@
                         password="${druid.password}">
         </jdbcConnection>
 
-        <javaModelGenerator targetPackage="sc.whorl.logic.domain.model.system"
+        <javaModelGenerator targetPackage="sc.whorl.logic.domain.model.auth"
                             targetProject="C:\work\workspace\sc-whorl\sc-whorl-web\src\main\java" />
-        <sqlMapGenerator targetPackage="mapper.system"
+        <sqlMapGenerator targetPackage="mapper.auth"
                          targetProject="C:\work\workspace\sc-whorl\sc-whorl-web\src\main\resources" />
-        <javaClientGenerator targetPackage="sc.whorl.logic.domain.dao.system"
+        <javaClientGenerator targetPackage="sc.whorl.logic.domain.dao.auth"
                              targetProject="C:\work\workspace\sc-whorl\sc-whorl-web\src\main\java" type="XMLMAPPER" >
             <property name="enableSubPackages" value="true" />
         </javaClientGenerator>
 
-        <table schema="" tableName="menu" domainObjectName="Menu">
+        <table schema="" tableName="role">
+            <property name="useActualColumnNames" value="true"/>
+            <generatedKey column="tid"  sqlStatement="Mysql" identity="true"/>
+        </table>
+        <table schema="" tableName="rolepermission" domainObjectName="RolePermission">
+            <property name="useActualColumnNames" value="true"/>
+            <generatedKey column="tid"  sqlStatement="Mysql" identity="true"/>
+        </table>
+        <table schema="" tableName="user">
+            <property name="useActualColumnNames" value="true"/>
+            <generatedKey column="tid"  sqlStatement="Mysql" identity="true"/>
+        </table>
+        <table schema="" tableName="userrole" domainObjectName="UserRole">
             <property name="useActualColumnNames" value="true"/>
             <generatedKey column="tid"  sqlStatement="Mysql" identity="true"/>
         </table>
