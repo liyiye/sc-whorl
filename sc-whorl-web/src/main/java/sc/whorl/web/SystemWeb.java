@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import sc.whorl.logic.domain.model.system.Menu;
 import sc.whorl.logic.pojo.system.MenuInfo;
 import sc.whorl.logic.service.system.MenuService;
 import sc.whorl.system.commons.MsgResponseBody;
@@ -56,7 +57,7 @@ public class SystemWeb {
 
     @ApiOperation(value = "查询菜单列表", httpMethod = "POST", produces = MediaType.APPLICATION_JSON_VALUE)
     @RequestMapping(value = "/searchListMenu", method = RequestMethod.POST, produces = {"application/json"})
-    public MsgResponseBody<PageResponse> searchListMenu(@RequestBody MenuRequest menuRequest) {
+    public MsgResponseBody<PageResponse<Menu>> searchListMenu(@RequestBody MenuRequest menuRequest) {
         return MsgResponseBody.success().setResult(menuService.searchListMenu(menuRequest));
     }
 

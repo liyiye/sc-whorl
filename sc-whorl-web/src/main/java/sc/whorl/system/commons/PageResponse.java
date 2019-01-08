@@ -13,18 +13,29 @@ package sc.whorl.system.commons;
 import com.github.pagehelper.PageInfo;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * 分页响应对象基类，定义了所有有关分页的信息。<br/>
  * 所有的分页响应对象都需要继承该类。
  */
-public class PageResponse implements Serializable {
+public class PageResponse<T> implements Serializable {
+    private List<T> list;
 
     public PageResponse(PageInfo pageInfo) {
         this.pageIndex = pageInfo.getPageNum();
         this.pages = pageInfo.getPages();
         this.count = pageInfo.getTotal();
         this.pageSize = pageInfo.getPageSize();
+        this.list = pageInfo.getList();
+    }
+
+    public List<T> getList() {
+        return list;
+    }
+
+    public void setList(List<T> list) {
+        this.list = list;
     }
 
     /**

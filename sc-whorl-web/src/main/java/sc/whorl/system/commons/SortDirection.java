@@ -15,8 +15,7 @@ import java.io.Serializable;
 /**
  * 排序规则枚举类定义。<br/>
  *
- * @auth: wangpeng
- * @since cjia-commons-base-api-1.0.0
+
  */
 public enum SortDirection implements Serializable {
 

@@ -17,9 +17,7 @@ import javax.validation.constraints.NotNull;
 
 /**
  * 分页业务对象。<br/>
- *
- * @auth: wangpeng
- * @since cjia-commons-base-api-1.0.0
+
  */
 public class PageRequest implements Serializable {
 
@@ -156,23 +154,12 @@ public class PageRequest implements Serializable {
         this.sortBy = sortBy;
     }
 
-    /**
-     * 设置排序规则，默认值为{@link cjia.commons.base.conditon.SortDirection#ASC SortDirection.ASC}
-     *
-     * @return 排序规则，取值有{@link cjia.commons.base.conditon.SortDirection#ASC SortDirection.ASC}和{@link
-     * cjia.commons.base.conditon.SortDirection#DESC SortDirection.DESC}
-     */
+
     public SortDirection getDirection() {
         return direction;
     }
 
-    /**
-     * 获取排序规则
-     *
-     * @param direction
-     *         排序规则，取值有{@link cjia.commons.base.conditon.SortDirection#ASC SortDirection.ASC}和{@link
-     *         cjia.commons.base.conditon.SortDirection#DESC SortDirection.DESC}
-     */
+
     public void setDirection(SortDirection direction) {
         this.direction = direction;
     }

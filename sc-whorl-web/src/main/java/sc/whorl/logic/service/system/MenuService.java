@@ -72,10 +72,10 @@ public class MenuService extends BaseService<MenuMapper, Menu> {
         this.deleteByPrimaryKey(menuId);
     }
 
-    public PageResponse searchListMenu(MenuRequest menuRequest) {
+    public PageResponse<Menu> searchListMenu(MenuRequest menuRequest) {
         PageHelper.startPage(menuRequest.getPageIndex(), menuRequest.getPageSize());
         Example example = new Example(Menu.class);
-        example.createCriteria().andNotEqualTo("parentId", "0");
+        example.createCriteria().andNotEqualTo("parentid", "0");
         List<Menu> menuList = selectByExample(example);
         PageInfo<Menu> pageInfo = new PageInfo<Menu>(menuList);
         return new PageResponse(pageInfo);

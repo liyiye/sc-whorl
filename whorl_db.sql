@@ -17,7 +17,7 @@ CREATE TABLE `menu` (
   `createBy` varchar(255) DEFAULT NULL,
   `modifyAt` datetime DEFAULT NULL,
   `modifyBy` varchar(255) DEFAULT NULL,
-  `order` int(11) DEFAULT NULL,
+  `orderIndex` int(11) DEFAULT NULL,
   PRIMARY KEY (`tid`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
@@ -43,7 +43,8 @@ CREATE TABLE `permission` (
   `createBy` varchar(255) DEFAULT NULL,
   `modifyAt` datetime DEFAULT NULL,
   `modifyBy` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`tid`)
+  PRIMARY KEY (`tid`),
+  UNIQUE KEY `unitcode_functionnumber` (`functionNumber`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
