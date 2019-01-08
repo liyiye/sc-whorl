@@ -21,6 +21,7 @@ import sc.whorl.logic.domain.model.system.Menu;
 import sc.whorl.logic.domain.model.system.ext.ExtMenu;
 import sc.whorl.logic.pojo.system.ChildMenuInfo;
 import sc.whorl.logic.pojo.system.MenuInfo;
+import sc.whorl.system.commons.PageResponse;
 import sc.whorl.system.commons.base.BaseService;
 import sc.whorl.system.config.springsecurity.utils.UserAuthInfoUtils;
 import sc.whorl.system.utils.ScUtils;
@@ -71,13 +72,13 @@ public class MenuService extends BaseService<MenuMapper, Menu> {
         this.deleteByPrimaryKey(menuId);
     }
 
-    public PageInfo<Menu> searchListMenu(MenuRequest menuRequest) {
+    public PageResponse searchListMenu(MenuRequest menuRequest) {
         PageHelper.startPage(menuRequest.getPageIndex(), menuRequest.getPageSize());
         Example example = new Example(Menu.class);
         example.createCriteria().andNotEqualTo("parentId", "0");
         List<Menu> menuList = selectByExample(example);
         PageInfo<Menu> pageInfo = new PageInfo<Menu>(menuList);
-        return pageInfo;
+        return new PageResponse(pageInfo);
     }
 
     @Transactional(rollbackFor = Exception.class)

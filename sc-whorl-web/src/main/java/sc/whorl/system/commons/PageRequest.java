@@ -21,7 +21,7 @@ import javax.validation.constraints.NotNull;
  * @auth: wangpeng
  * @since cjia-commons-base-api-1.0.0
  */
-public class PageCondition implements Serializable {
+public class PageRequest implements Serializable {
 
     /**
      * 页码数
@@ -51,7 +51,7 @@ public class PageCondition implements Serializable {
     /**
      * 默认构造函数
      */
-    public PageCondition() {
+    public PageRequest() {
     }
 
     /**
@@ -62,7 +62,7 @@ public class PageCondition implements Serializable {
      * @param pageSize
      *         页大小
      */
-    public PageCondition(int pageIndex, int pageSize) {
+    public PageRequest(int pageIndex, int pageSize) {
         this.pageIndex = pageIndex;
         this.pageSize = pageSize;
     }
@@ -75,7 +75,7 @@ public class PageCondition implements Serializable {
      * @param direction
      *         排序规则
      */
-    public PageCondition(Integer sortBy, SortDirection direction) {
+    public PageRequest(Integer sortBy, SortDirection direction) {
         this.sortBy = sortBy;
         this.direction = direction;
     }
@@ -92,7 +92,7 @@ public class PageCondition implements Serializable {
      * @param direction
      *         排序规则
      */
-    public PageCondition(int pageIndex, int pageSize, Integer sortBy, SortDirection direction) {
+    public PageRequest(int pageIndex, int pageSize, Integer sortBy, SortDirection direction) {
         this.pageIndex = pageIndex;
         this.pageSize = pageSize;
         this.sortBy = sortBy;
