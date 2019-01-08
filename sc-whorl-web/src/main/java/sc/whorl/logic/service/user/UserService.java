@@ -97,7 +97,7 @@ public class UserService extends BaseService<UserMapper, User> {
      * @param userVo
      * @return
      */
-    public MsgResponseBody  login(UserVo userVo) {
+    public MsgResponseBody<JWTUserDetail>  login(UserVo userVo) {
         User user = new User();
         user.setLoginname(userVo.getAccountname());
         User userOne = selectOne(user);

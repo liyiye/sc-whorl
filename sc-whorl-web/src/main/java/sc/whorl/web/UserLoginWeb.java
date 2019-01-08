@@ -9,13 +9,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import sc.whorl.web.vo.user.UserVo;
 import sc.whorl.logic.service.user.UserService;
 import sc.whorl.system.commons.MsgResponseBody;
 import sc.whorl.system.commons.limitrate.Limit;
 import sc.whorl.system.commons.preventresubmit.PreventParam;
 import sc.whorl.system.commons.preventresubmit.PreventResubmitLock;
 import sc.whorl.system.commons.webhandler.RequestJsonParam;
+import sc.whorl.system.config.jwt.JWTUserDetail;
+import sc.whorl.web.vo.user.UserVo;
 
 /**
  * <一句话功能简述>
@@ -42,7 +43,7 @@ public class UserLoginWeb {
     @RequestMapping(value = "/login",method = RequestMethod.POST, produces = { "application/json"})
     //限流 10秒内最多允许1000次访问
     @Limit(key = "USER:LOGIN", period = 10, count = 1000)
-    public MsgResponseBody login(@RequestJsonParam("userName") String userName, @RequestJsonParam("passWord") String passWord) {
+    public MsgResponseBody<JWTUserDetail> login(@RequestJsonParam("userName") String userName, @RequestJsonParam("passWord") String passWord) {
         UserVo userVo = new UserVo();
         userVo.setAccountname(userName);
         userVo.setPassword(passWord);
@@ -57,7 +58,7 @@ public class UserLoginWeb {
     //默认5秒内同一手机号不可重复提交
     @PreventResubmitLock(prefix = "USER:REGISTER")
     //cache会在方法执行后缓存,相当于更新了缓存,少了一步查询缓存
-    public MsgResponseBody register(@RequestBody @PreventParam(name = "userPhone") UserVo userVo) {
+    public MsgResponseBody<String> register(@RequestBody @PreventParam(name = "userPhone") UserVo userVo) {
         userService.register(userVo);
         return MsgResponseBody.success().setResult("注册成功");
     }
