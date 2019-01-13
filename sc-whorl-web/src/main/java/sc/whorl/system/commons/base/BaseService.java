@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.util.List;
 
 import sc.whorl.system.commons.MyMapper;
+import sc.whorl.web.vo.system.UpMenuRequest;
 
 
 public abstract class BaseService<M extends MyMapper<T>, T> {
@@ -93,5 +94,6 @@ public abstract class BaseService<M extends MyMapper<T>, T> {
     public int insertList(List<T> recordList) {
         return mapper.insertList(recordList);
     }
+
 
 }

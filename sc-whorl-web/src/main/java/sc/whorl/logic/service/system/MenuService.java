@@ -26,8 +26,8 @@ import sc.whorl.system.commons.base.BaseService;
 import sc.whorl.system.config.springsecurity.utils.UserAuthInfoUtils;
 import sc.whorl.system.utils.ScUtils;
 import sc.whorl.system.utils.mapper.BeanMapper;
+import sc.whorl.web.vo.system.MenuListQueryRequest;
 import sc.whorl.web.vo.system.MenuPremInfo;
-import sc.whorl.web.vo.system.MenuRequest;
 import tk.mybatis.mapper.entity.Example;
 
 /**
@@ -43,6 +43,11 @@ public class MenuService extends BaseService<MenuMapper, Menu> {
     private MenuMapper menuMapper;
     @Autowired
     private PermissionMapper permissionMapper;
+
+    public void upMenu(Long menuId, Menu menu) {
+        menu.setTid(menuId);
+        updateByPrimaryKeySelective(menu);
+    }
 
     public List<MenuInfo> getMenu() {
         List<MenuInfo> menuInfos = new ArrayList<>();
@@ -77,7 +82,7 @@ public class MenuService extends BaseService<MenuMapper, Menu> {
         this.deleteByPrimaryKey(menuId);
     }
 
-    public PageResponse<Menu> searchListMenu(MenuRequest menuRequest) {
+    public PageResponse<Menu> searchListMenu(MenuListQueryRequest menuRequest) {
         PageHelper.startPage(menuRequest.getPageIndex(), menuRequest.getPageSize());
         Example example = new Example(Menu.class);
         example.createCriteria().andNotEqualTo("parentId", "0");
