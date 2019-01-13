@@ -27,6 +27,6 @@
         INNER JOIN rolepermission c ON b.roleId = c.roleId
         INNER JOIN menu d ON c.permissionId = d.permissionId
         LEFT JOIN menu f on d.parentId=f.tid and f.parentId=0
-        where a.`status`='EBL' AND B.`status`='EBL' and c.`status`='EBL' and d.`status`='EBL' and a.tid=#{userId} ORDER BY d.tid desc
+        where a.`status`='EBL' AND b.`status`='EBL' and c.`status`='EBL' and d.`status`='EBL' and a.tid=#{userId} ORDER BY d.tid desc
     </select>
 </mapper>
