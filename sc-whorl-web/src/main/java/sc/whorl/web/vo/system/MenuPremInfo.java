@@ -38,7 +38,7 @@ public class MenuPremInfo implements Serializable {
     /**
      * 菜单排序默认为0
      */
-    private Integer order;
+    private Integer orderIndex;
 
     /**
      * 权限代码,需要唯一

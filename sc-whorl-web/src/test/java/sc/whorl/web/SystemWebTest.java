@@ -69,7 +69,7 @@ public class SystemWebTest {
         menuPremInfo.setMenuurl("/URL/ADD/TEST");
         menuPremInfo.setMenuname("测试添加菜单");
         menuPremInfo.setApplicationcode("WHORL");
-        menuPremInfo.setOrder(0);
+        menuPremInfo.setOrderIndex(0);
         menuPremInfo.setFunctionNumber("URL_ADDTEST_FUNCTION");
         mvc.perform(MockMvcRequestBuilders.post("/sc/user/system/addMenu").content(JSON.toJSONString(menuPremInfo)).contentType(MediaType.APPLICATION_JSON_UTF8).
                 headers(httpHeaders).

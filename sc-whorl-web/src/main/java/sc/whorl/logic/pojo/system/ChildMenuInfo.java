@@ -31,6 +31,6 @@ public class ChildMenuInfo implements Serializable {
     /**
      * 菜单排序,越小越靠前
      */
-    private Integer order;
+    private Integer orderIndex;
 
 }

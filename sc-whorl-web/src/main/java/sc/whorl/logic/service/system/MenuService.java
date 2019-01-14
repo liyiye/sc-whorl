@@ -113,7 +113,7 @@ public class MenuService extends BaseService<MenuMapper, Menu> {
         menu.setCreateBy(UserAuthInfoUtils.getLoginName());
         menu.setModifyAt(new Date());
         menu.setModifyBy(UserAuthInfoUtils.getLoginName());
-        menu.setOrderIndex(menuPremInfo.getOrder());
+        menu.setOrderIndex(menuPremInfo.getOrderIndex());
         insertSelective(menu);
     }
 }

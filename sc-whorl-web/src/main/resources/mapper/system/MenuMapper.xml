@@ -20,7 +20,7 @@
   </resultMap>
     <select id="selectMenuByUserId" resultType="sc.whorl.logic.domain.model.system.ext.ExtMenu">
         SELECT
-        f.tid parnetId,f.menuName parentMenuName,d.tid menuId,d.menuName,d.menuUrl,d.applicationCode,d.order
+        f.tid parnetId,f.menuName parentMenuName,d.tid menuId,d.menuName,d.menuUrl,d.applicationCode,d.orderIndex
         FROM
         `user` a
         INNER JOIN userrole b ON a.tid = b.userId

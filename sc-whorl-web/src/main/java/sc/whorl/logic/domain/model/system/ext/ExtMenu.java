@@ -39,5 +39,5 @@ public class ExtMenu {
     /**
      * 菜单排序 越小对应越靠前
      */
-    private Integer order;
+    private Integer orderIndex;
 }
