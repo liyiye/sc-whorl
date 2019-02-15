@@ -98,6 +98,26 @@ String delimiter() default ":";
 String name() default "";
 ```
 
+## @RequestJsonParam 请求体为json的属性提取
+
+```java
+public MsgResponseBody<JWTUserDetail> login(@RequestJsonParam("userName") String userName, @RequestJsonParam("passWord") String passWord) {
+}
+```
+
+**注解字段说明**
+
+```java
+//用于绑定的请求参数名字
+String value() default "" ;
+//是否必须，默认是
+boolean required() default true;
+//是否是当前json对象,默认false,表示当前josn对象中的某一个值,若是true,则忽略value
+boolean current() default false;
+//如果是日期类型的,设置其时间.默认为:yyyy-MM-dd HH:mm:ss
+String dateFormat() default YMDHMS;
+```
+
 # 项目部署
 
 - 新建mysql的whorl库编码格式为UTF-8,导入工程中的whorl_db.sql

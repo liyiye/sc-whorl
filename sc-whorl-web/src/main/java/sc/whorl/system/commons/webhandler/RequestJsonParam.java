@@ -7,9 +7,8 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * Created by zhuheng on 2015/1/5.
  * 不可以与ReqeustBody混用
- * 201604012,1.5 新增Json日期格式属性提取.默认日期格式为为:yyyy-MM-dd HH:mm:ss ,同时可以通过dateFormat设置日期格式.
+ *  新增Json日期格式属性提取.默认日期格式为为:yyyy-MM-dd HH:mm:ss ,同时可以通过dateFormat设置日期格式.
  */
 @Target({ElementType.PARAMETER})
 @Retention(RetentionPolicy.RUNTIME)
