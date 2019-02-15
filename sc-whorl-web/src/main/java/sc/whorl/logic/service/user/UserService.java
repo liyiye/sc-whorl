@@ -108,7 +108,7 @@ public class UserService extends BaseService<UserMapper, User> {
 
     public void register(UserVo userVo) {
         Example example = new Example(User.class);
-        example.createCriteria().andEqualTo("loginname", userVo.getAccountname()).orEqualTo("mobile", userVo.getUserPhone());
+        example.createCriteria().andEqualTo("loginName", userVo.getAccountname()).orEqualTo("mobile", userVo.getUserPhone());
         RedisLock.tryLock(userVo.getAccountname());
         List<User> userList = this.selectByExample(example);
         RedisLock.unLock(userVo.getAccountname());
