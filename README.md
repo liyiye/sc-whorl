@@ -2,7 +2,7 @@
 
 ## 项目简介
 
-[![License](https://img.shields.io/bower/l/:packageName.svg)](https://github.com/Senssic/sc-whorl/blob/master/LICENSE)
+[![License](https://img.shields.io/github/license/Senssic/sc-whorl.svg?style=flat)](https://github.com/Senssic/sc-whorl/blob/master/LICENSE)
 [![JDK 1.8+](https://img.shields.io/badge/JDK-1.8-blue.svg)](#sc-whorl)
 
 sc-whorl是一个基于springboot2.x的微服务开发脚手架,整合了多种开源框架配置,可以作为领域单体直接进行使用,可以根据自己的实际需求进行二次开发和扩展.
