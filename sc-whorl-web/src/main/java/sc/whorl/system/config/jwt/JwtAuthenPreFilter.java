@@ -1,6 +1,5 @@
 package sc.whorl.system.config.jwt;
 
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -10,6 +9,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
 import org.springframework.util.ObjectUtils;
+import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
@@ -96,14 +96,14 @@ public class JwtAuthenPreFilter extends OncePerRequestFilter {
                         log.info("令牌已失效!{}", authToken);
                         throw new BadCredentialsException(ErrorCodeEnum.TOKEN_INVALID.getMessage());
                     }
-                    if (!StringUtils.isEmpty(redisUtil.get(String.format(JwtTokenUtil.JWT_TOKEN_PREFIX, userDetail.getUserType(), userDetail.getUserId())))) {
+                    if (!StringUtils.isEmpty(redisUtil.get(authToken))) {
                         log.info("令牌已位于黑名单!{}", authToken);
                         throw new BadCredentialsException(ErrorCodeEnum.TOKEN_INVALID.getMessage());
                     }
                     //令牌快过期生成新的令牌并设置到返回头中,客户端在每次的restful请求如果发现有就替换原值,同时原值做redis黑名单
                     if (new Date(System.currentTimeMillis() - subRefresh).after(jwtTokenUtil.getExpirationDateFromToken(authToken))) {
                         String resAuthToken = jwtTokenUtil.generateToken(userDetail);
-                        redisUtil.setEx(String.format(JwtTokenUtil.JWT_TOKEN_PREFIX, userDetail.getUserType(), userDetail.getUserId()), authToken, subRefresh, TimeUnit.SECONDS);
+                        redisUtil.setEx(authToken,String.format(JwtTokenUtil.JWT_TOKEN_PREFIX, userDetail.getUserType(), userDetail.getUserId()), subRefresh, TimeUnit.SECONDS);
                         httpServletResponse.setHeader(tokenHeader, tokenHead + resAuthToken);
                     }
                     JwtTokenUtil.LOCAL_USER.set(userDetail);

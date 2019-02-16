@@ -44,7 +44,7 @@ public class SystemWeb {
     }
 
     @ApiOperation(value = "删除菜单", httpMethod = "PUT", produces = MediaType.APPLICATION_JSON_VALUE)
-    @RequestMapping(value = "/delMenu/{menuId}", method = RequestMethod.PUT, produces = {"application/json"})
+    @RequestMapping(value = "/delMenu/{menuId}", method = RequestMethod.PUT)
     public MsgResponseBody<String> delMenu(@PathVariable Long menuId) {
         menuService.delMenu(menuId);
         return MsgResponseBody.success().setResult("删除成功!");
@@ -65,7 +65,7 @@ public class SystemWeb {
 
 
     @ApiOperation(value = "修改菜单", httpMethod = "PUT", produces = MediaType.APPLICATION_JSON_VALUE)
-    @RequestMapping(value = "/upMenu/{menuId}", method = RequestMethod.PUT, produces = {"application/json"})
+    @RequestMapping(value = "/upMenu/{menuId}", method = RequestMethod.PUT)
     public MsgResponseBody<String> upMenu(@PathVariable Long menuId, @RequestBody UpMenuRequest upMenuRequest) {
         menuService.upMenu(menuId, BeanMapper.map(upMenuRequest,Menu.class));
         return MsgResponseBody.success().setResult("添加成功!");
