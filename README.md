@@ -11,17 +11,6 @@ sc-whorl是一个基于springboot2.x的微服务开发脚手架,整合了多种�
 
 
 
-[前端工程](https://github.com/Senssic/sc-whorl-client)此项目对应的前端页面工程使用VUE全家桶进行开发
-主要功能点:
-
-- 用户登陆,登出,注册
-- 菜单管理
-- 用户管理
-- 字典管理(ing)
-- 权限管理(ing)
-- ...
-
-
 
 ## 项目使用技术栈
 
